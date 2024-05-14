@@ -3,10 +3,30 @@
     <title>lhplj</title>
     <link href="https://lhplj.myblog.io/feed.xml" rel="self" />
     <link href="https://lhplj.myblog.io" />
-    <updated>1970-01-01T08:00:00+08:00</updated>
+    <updated>2024-05-14T18:19:10+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.myblog.io</id>
 
+    <entry>
+        <title>Test</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.myblog.io/test.html"/>
+        <id>https://lhplj.myblog.io/test.html</id>
+
+        <updated>2024-05-14T18:19:10+08:00</updated>
+            <summary>
+                <![CDATA[
+                    Test Pubill
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>Test Pubill</p>
+            ]]>
+        </content>
+    </entry>
 </feed>
