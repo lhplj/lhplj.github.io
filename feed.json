@@ -2,16 +2,16 @@
     "version": "https://jsonfeed.org/version/1",
     "title": "lhplj",
     "description": "",
-    "home_page_url": "https://lhplj.myblog.io",
-    "feed_url": "https://lhplj.myblog.io/feed.json",
+    "home_page_url": "https://lhplj.github.io",
+    "feed_url": "https://lhplj.github.io/feed.json",
     "user_comment": "",
     "author": {
         "name": "lhplj"
     },
     "items": [
         {
-            "id": "https://lhplj.myblog.io/test.html",
-            "url": "https://lhplj.myblog.io/test.html",
+            "id": "https://lhplj.github.io/test.html",
+            "url": "https://lhplj.github.io/test.html",
             "title": "Test",
             "summary": "Test Pubill",
             "content_html": "<p>Test Pubill</p>",
