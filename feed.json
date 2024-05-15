@@ -13,15 +13,15 @@
             "id": "https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html",
             "url": "https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html",
             "title": "求整数二进制位最右(低)1的位置",
-            "summary": "# 对于任意整数N,求N的二进制位最右1的位置 int pos = N &amp; ((~N) + 1); 对原数先取反再加1,最后再与原数进行与操作即可 使用场景 # 假设数组 arr 中的这两种数为 a 和 b int eor = 0; for (int i = 0; i &lt; arr.length; i++) { eor ^= arr[i]; } # 此时 eor = a ^ b #&hellip;",
-            "content_html": "<pre class=\"language-java\"><code># 对于任意整数N,求N的二进制位最右1的位置\nint pos = N &amp; ((~N) + 1);</code></pre>\n<p>对原数先取反再加1,最后再与原数进行与操作即可</p>\n<p>使用场景</p>\n<ol>\n<li>一个数组中有两种数是奇数个,找出这两种数\n<pre class=\"language-java\"><code># 假设数组 arr 中的这两种数为 a 和 b\nint eor = 0;\nfor (int i = 0; i &lt; arr.length; i++) {\n    eor ^= arr[i];\n}\n# 此时 eor = a ^ b\n# 因为 a != b 则 eor != 0 则必有二进制位有1\nint rigthOne = eor &amp; ((~eor) + 1);\n# 则对于 a 和 b 必有一个rigthOne 位置为1一个为 0\n# 则必有 rightOne ^ a 和 rightOne ^ b 一个为1一个为0(可通过此方法将a与b分开)\nint a = 0;\nfor (int i = 0; i &lt; arr.length; i++) {\n    if (arr[i] &amp; rightOne != 0) {\n        a ^= arr[i];\n    }\n}\nint b = eor ^ a;</code></pre>\n</li>\n</ol>",
+            "summary": "# 对于任意整数N,求N的二进制位最右1的位置 int pos = N &amp; ((~N) + 1); 对原数先取反再加1,最后再与原数进行与操作即可 使用场景 int count = 0; int rightOne = -1; while (N != 0) { # 找最后边为1的位置 rightOne = N &amp; ((~N) + 1); count++; # 将N中最后边的1消掉 N ^= rightOne; } 一个数组中有两种数是奇数个,找出这两种数 # 假设数组 arr&hellip;",
+            "content_html": "<pre class=\"language-java\"><code># 对于任意整数N,求N的二进制位最右1的位置\nint pos = N &amp; ((~N) + 1);</code></pre>\n<p>对原数先取反再加1,最后再与原数进行与操作即可</p>\n<p>使用场景</p>\n<ol>\n<li>求整数N二进制中1的数量\n<pre class=\"language-java\"><code>int count = 0;\nint rightOne = -1;\nwhile (N != 0) {\n    # 找最后边为1的位置\n    rightOne = N &amp; ((~N) + 1);\n    count++;\n    # 将N中最后边的1消掉\n    N ^= rightOne;\n}</code></pre>\n</li>\n<li>一个数组中有两种数是奇数个,找出这两种数\n<pre class=\"language-java\"><code># 假设数组 arr 中的这两种数为 a 和 b\nint eor = 0;\nfor (int i = 0; i &lt; arr.length; i++) {\n    eor ^= arr[i];\n}\n# 此时 eor = a ^ b\n# 因为 a != b 则 eor != 0 则必有二进制位有1\nint rigthOne = eor &amp; ((~eor) + 1);\n# 则对于 a 和 b 必有一个rigthOne 位置为1一个为 0\n# 则必有 rightOne ^ a 和 rightOne ^ b 一个为1一个为0(可通过此方法将a与b分开)\nint a = 0;\nfor (int i = 0; i &lt; arr.length; i++) {\n    if (arr[i] &amp; rightOne != 0) {\n        a ^= arr[i];\n    }\n}\nint b = eor ^ a;</code></pre>\n</li>\n</ol>",
             "author": {
                 "name": "lhplj"
             },
             "tags": [
             ],
             "date_published": "2024-05-15T14:59:17+08:00",
-            "date_modified": "2024-05-15T14:59:17+08:00"
+            "date_modified": "2024-05-15T15:11:16+08:00"
         },
         {
             "id": "https://lhplj.github.io/yi-huo.html",

@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-05-15T14:59:17+08:00</updated>
+    <updated>2024-05-15T15:11:16+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -20,7 +20,7 @@
         <updated>2024-05-15T14:59:17+08:00</updated>
             <summary>
                 <![CDATA[
-                    # 对于任意整数N,求N的二进制位最右1的位置 int pos = N &amp; ((~N) + 1); 对原数先取反再加1,最后再与原数进行与操作即可 使用场景 # 假设数组 arr 中的这两种数为 a 和 b int eor = 0; for (int i = 0; i &lt; arr.length; i++) { eor ^= arr[i]; } # 此时 eor = a ^ b #&hellip;
+                    # 对于任意整数N,求N的二进制位最右1的位置 int pos = N &amp; ((~N) + 1); 对原数先取反再加1,最后再与原数进行与操作即可 使用场景 int count = 0; int rightOne = -1; while (N != 0) { # 找最后边为1的位置 rightOne = N &amp; ((~N) + 1); count++; # 将N中最后边的1消掉 N ^= rightOne; } 一个数组中有两种数是奇数个,找出这两种数 # 假设数组 arr&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -30,6 +30,17 @@ int pos = N &amp; ((~N) + 1);</code></pre>
 <p>对原数先取反再加1,最后再与原数进行与操作即可</p>
 <p>使用场景</p>
 <ol>
+<li>求整数N二进制中1的数量
+<pre class="language-java"><code>int count = 0;
+int rightOne = -1;
+while (N != 0) {
+    # 找最后边为1的位置
+    rightOne = N &amp; ((~N) + 1);
+    count++;
+    # 将N中最后边的1消掉
+    N ^= rightOne;
+}</code></pre>
+</li>
 <li>一个数组中有两种数是奇数个,找出这两种数
 <pre class="language-java"><code># 假设数组 arr 中的这两种数为 a 和 b
 int eor = 0;
