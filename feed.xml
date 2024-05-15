@@ -3,12 +3,60 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-05-14T21:43:55+08:00</updated>
+    <updated>2024-05-15T14:06:14+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
+    <entry>
+        <title>异或^</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/yi-huo.html"/>
+        <id>https://lhplj.github.io/yi-huo.html</id>
+
+        <updated>2024-05-15T14:06:14+08:00</updated>
+            <summary>
+                <![CDATA[
+                    异或运算符^运算规则:相同为0,不同为1 0 ^ 0 = 0; 1 ^ 1 = 0; 0 ^ 1 = 1; 1 ^ 0 = 1; 则对于任意整数N满足 N ^ N = 0; 0 ^ N = N; 进一步,对于任意整数M和N满足 M ^ N ^ N = M; N ^ M ^ N&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>异或运算符^运算规则:相同为0,不同为1</p>
+<pre class="language-java"><code>0 ^ 0 = 0;
+1 ^ 1 = 0;
+0 ^ 1 = 1;
+1 ^ 0 = 1;</code></pre>
+<p>则对于任意整数N满足</p>
+<pre class="language-java"><code>N ^ N = 0;
+0 ^ N = N;</code></pre>
+<p>进一步,对于任意整数M和N满足</p>
+<pre class="language-java"><code>M ^ N ^ N = M;
+N ^ M ^ N = M;</code></pre>
+<p>使用场景1:数值交换</p>
+<pre class="language-java"><code># 交换 a 与 b 的值
+int a = 7;
+int b = 9;
+# 正常数值交换,需要使用一个临时变量
+int temp = a;
+a = b;
+b = temp;
+
+# 通过异或
+# a = 7 ^ 9;
+a = a ^ b;
+# b = 7 ^ 9 ^ 9 则 b = 7
+b = a ^ b;
+
+# 注意事项: 对同一个数进行异或结果为0,通过异或交换数值时,要保证2个数指向的不是同一个地址
+# a = 7 ^ 9 ^ 7 则 a = 9 完成交换
+a = a ^ b;</code></pre>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>晶晶</title>
         <author>
