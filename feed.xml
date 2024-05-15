@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-05-15T14:06:14+08:00</updated>
+    <updated>2024-05-15T14:32:52+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -36,7 +36,10 @@
 <p>进一步,对于任意整数M和N满足</p>
 <pre class="language-java"><code>M ^ N ^ N = M;
 N ^ M ^ N = M;</code></pre>
-<p>使用场景1:数值交换</p>
+<p><strong>使用场景</strong></p>
+<ol>
+<li>数值交换</li>
+</ol>
 <pre class="language-java"><code># 交换 a 与 b 的值
 int a = 7;
 int b = 9;
@@ -50,10 +53,10 @@ b = temp;
 a = a ^ b;
 # b = 7 ^ 9 ^ 9 则 b = 7
 b = a ^ b;
-
-# 注意事项: 对同一个数进行异或结果为0,通过异或交换数值时,要保证2个数指向的不是同一个地址
 # a = 7 ^ 9 ^ 7 则 a = 9 完成交换
-a = a ^ b;</code></pre>
+a = a ^ b;
+
+# 注意事项: 通过异或交换数值时,要保证2个数指向的不是同一个地址</code></pre>
             ]]>
         </content>
     </entry>
