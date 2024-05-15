@@ -14,14 +14,14 @@
             "url": "https://lhplj.github.io/yi-huo.html",
             "title": "异或^",
             "summary": "异或运算符^运算规则:相同为0,不同为1 0 ^ 0 = 0; 1 ^ 1 = 0; 0 ^ 1 = 1; 1 ^ 0 = 1; 则对于任意整数N满足 N ^ N = 0; 0 ^ N = N; 进一步,对于任意整数M和N满足 M ^ N ^ N = M; N ^ M ^ N&hellip;",
-            "content_html": "<p>异或运算符^运算规则:相同为0,不同为1</p>\n<pre class=\"language-java\"><code>0 ^ 0 = 0;\n1 ^ 1 = 0;\n0 ^ 1 = 1;\n1 ^ 0 = 1;</code></pre>\n<p>则对于任意整数N满足</p>\n<pre class=\"language-java\"><code>N ^ N = 0;\n0 ^ N = N;</code></pre>\n<p>进一步,对于任意整数M和N满足</p>\n<pre class=\"language-java\"><code>M ^ N ^ N = M;\nN ^ M ^ N = M;</code></pre>\n<p><strong>使用场景</strong></p>\n<ol>\n<li>数值交换</li>\n</ol>\n<pre class=\"language-java\"><code># 交换 a 与 b 的值\nint a = 7;\nint b = 9;\n# 正常数值交换,需要使用一个临时变量\nint temp = a;\na = b;\nb = temp;\n\n# 通过异或\n# a = 7 ^ 9;\na = a ^ b;\n# b = 7 ^ 9 ^ 9 则 b = 7\nb = a ^ b;\n# a = 7 ^ 9 ^ 7 则 a = 9 完成交换\na = a ^ b;\n\n# 注意事项: 通过异或交换数值时,要保证2个数指向的不是同一个地址</code></pre>",
+            "content_html": "<p>异或运算符^运算规则:相同为0,不同为1</p>\n<pre class=\"language-java\"><code>0 ^ 0 = 0;\n1 ^ 1 = 0;\n0 ^ 1 = 1;\n1 ^ 0 = 1;</code></pre>\n<p>则对于任意整数N满足</p>\n<pre class=\"language-java\"><code>N ^ N = 0;\n0 ^ N = N;</code></pre>\n<p>进一步,对于任意整数M和N满足</p>\n<pre class=\"language-java\"><code>M ^ N ^ N = M;\nN ^ M ^ N = M;</code></pre>\n<p><strong>使用场景</strong></p>\n<ol>\n<li>数值交换\n<pre class=\"language-java\"><code># 交换 a 与 b 的值\nint a = 7;\nint b = 9;\n# 正常数值交换,需要使用一个临时变量\nint temp = a;\na = b;\nb = temp;\n\n# 通过异或\n# a = 7 ^ 9;\na = a ^ b;\n# b = 7 ^ 9 ^ 9 则 b = 7\nb = a ^ b;\n# a = 7 ^ 9 ^ 7 则 a = 9 完成交换\na = a ^ b;\n\n# 注意事项: 通过异或交换数值时,要保证2个数指向的不是同一个地址</code></pre>\n</li>\n<li>一个数组中只有一种数有奇数个,找到这个数\n<pre class=\"language-java\"><code># 对于数组 arr 中只有一种数有奇数个,其它为偶数个\nint eor = 0;\nfor (int i = 0; i &lt; arr.length; i++) {\n    eor ^= arr[i];\n}\n# 最后 eor 就是要求的值</code></pre>\n</li>\n</ol>\n<p> </p>",
             "author": {
                 "name": "lhplj"
             },
             "tags": [
             ],
             "date_published": "2024-05-15T14:06:14+08:00",
-            "date_modified": "2024-05-15T14:32:52+08:00"
+            "date_modified": "2024-05-15T14:39:35+08:00"
         },
         {
             "id": "https://lhplj.github.io/test.html",
