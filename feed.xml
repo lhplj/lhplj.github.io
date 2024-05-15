@@ -3,12 +3,56 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-05-15T14:39:35+08:00</updated>
+    <updated>2024-05-15T14:59:17+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
+    <entry>
+        <title>求整数二进制位最右(低)1的位置</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html"/>
+        <id>https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html</id>
+
+        <updated>2024-05-15T14:59:17+08:00</updated>
+            <summary>
+                <![CDATA[
+                    # 对于任意整数N,求N的二进制位最右1的位置 int pos = N &amp; ((~N) + 1); 对原数先取反再加1,最后再与原数进行与操作即可 使用场景 # 假设数组 arr 中的这两种数为 a 和 b int eor = 0; for (int i = 0; i &lt; arr.length; i++) { eor ^= arr[i]; } # 此时 eor = a ^ b #&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <pre class="language-java"><code># 对于任意整数N,求N的二进制位最右1的位置
+int pos = N &amp; ((~N) + 1);</code></pre>
+<p>对原数先取反再加1,最后再与原数进行与操作即可</p>
+<p>使用场景</p>
+<ol>
+<li>一个数组中有两种数是奇数个,找出这两种数
+<pre class="language-java"><code># 假设数组 arr 中的这两种数为 a 和 b
+int eor = 0;
+for (int i = 0; i &lt; arr.length; i++) {
+    eor ^= arr[i];
+}
+# 此时 eor = a ^ b
+# 因为 a != b 则 eor != 0 则必有二进制位有1
+int rigthOne = eor &amp; ((~eor) + 1);
+# 则对于 a 和 b 必有一个rigthOne 位置为1一个为 0
+# 则必有 rightOne ^ a 和 rightOne ^ b 一个为1一个为0(可通过此方法将a与b分开)
+int a = 0;
+for (int i = 0; i &lt; arr.length; i++) {
+    if (arr[i] &amp; rightOne != 0) {
+        a ^= arr[i];
+    }
+}
+int b = eor ^ a;</code></pre>
+</li>
+</ol>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>异或^</title>
         <author>
