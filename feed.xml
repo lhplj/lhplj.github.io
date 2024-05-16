@@ -3,12 +3,37 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-05-15T15:19:20+08:00</updated>
+    <updated>2024-05-16T13:17:39+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
+    <entry>
+        <title>Master公式</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/mastergong-shi.html"/>
+        <id>https://lhplj.github.io/mastergong-shi.html</id>
+
+        <updated>2024-05-16T13:17:22+08:00</updated>
+            <summary>
+                <![CDATA[
+                    形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度 如果log(b,a) &lt; d 复杂度为 O(N^d) 如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a)) 如果log(b,a) = d 复杂度为 O(N^d * logN)
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度</p>
+<ol>
+<li>如果log(b,a) &lt; d 复杂度为 O(N^d)</li>
+<li>如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a))</li>
+<li>如果log(b,a) = d 复杂度为 O(N^d * logN)</li>
+</ol>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>求整数二进制位最右(低)1的位置</title>
         <author>

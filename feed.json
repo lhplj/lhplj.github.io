@@ -10,6 +10,20 @@
     },
     "items": [
         {
+            "id": "https://lhplj.github.io/mastergong-shi.html",
+            "url": "https://lhplj.github.io/mastergong-shi.html",
+            "title": "Master公式",
+            "summary": "形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度 如果log(b,a) &lt; d 复杂度为 O(N^d) 如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a)) 如果log(b,a) = d 复杂度为 O(N^d * logN)",
+            "content_html": "<p>形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度</p>\n<ol>\n<li>如果log(b,a) &lt; d 复杂度为 O(N^d)</li>\n<li>如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a))</li>\n<li>如果log(b,a) = d 复杂度为 O(N^d * logN)</li>\n</ol>",
+            "author": {
+                "name": "lhplj"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-05-16T13:17:22+08:00",
+            "date_modified": "2024-05-16T13:17:39+08:00"
+        },
+        {
             "id": "https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html",
             "url": "https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html",
             "title": "求整数二进制位最右(低)1的位置",
