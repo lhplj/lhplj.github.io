@@ -3,12 +3,108 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-05-16T13:17:39+08:00</updated>
+    <updated>2024-05-17T16:22:37+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
+    <entry>
+        <title>MergeSort</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/mergesort.html"/>
+        <id>https://lhplj.github.io/mergesort.html</id>
+
+        <updated>2024-05-17T16:20:19+08:00</updated>
+            <summary>
+                <![CDATA[
+                    时间复杂度O(N * logN),优于冒泡/选择排序时间复杂度O(N^2) public class MergeSort { public static void main(String[] args) { int[] arr = {20, 24, 5, 17, 14, 25, 15, 52}; mergeSort1(arr); // mergeSort2(arr); } /** * 递归实现 */ private static void mergeSort1(int[] arr) { if (arr == null || arr.length &lt;&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>时间复杂度O(N * logN),优于冒泡/选择排序时间复杂度O(N^2)</p>
+<pre class="language-java"><code>public class MergeSort {
+    public static void main(String[] args) {
+        int[] arr = {20, 24, 5, 17, 14, 25, 15, 52};
+        mergeSort1(arr);
+        //        mergeSort2(arr);
+    }
+
+    /**
+     * 递归实现
+     */
+    private static void mergeSort1(int[] arr) {
+        if (arr == null || arr.length &lt; 2) {
+            return;
+        }
+        process(arr, 0, arr.length - 1);
+    }
+
+    private static void process(int[] arr, int l, int r) {
+        if (l == r) {
+            return;
+        }
+        // 将[l, r] 二分为 [l, m] 和 [m + 1, r]
+        int m = l + (r - l &gt;&gt; 1);
+        process(arr, l, m);
+        process(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
+
+    private static void merge(int[] arr, int l, int m, int r) {
+        int[] help = new int[r - l + 1];
+        // p1 指向[l,m]
+        // p2 指向[m + 1, r]
+        int i = 0, p1 = l, p2 = m + 1;
+        while (p1 &lt;= m &amp;&amp; p2 &lt;= r) {
+            // 比较左区间与右区间,直到某区间结束
+            help[i++] = arr[p1] &lt;= arr[p2] ? arr[p1++] : arr[p2++];
+        }
+        // 处理未结束的区间
+        while (p1 &lt;= m) {
+            help[i++] = arr[p1++];
+        }
+        while (p2 &lt;= r) {
+            help[i++] = arr[p2++];
+        }
+
+        for (i = 0; i &lt; help.length; i++) {
+            arr[l + i] = help[i];
+        }
+        System.out.println(JSON.toJSON(arr));
+    }
+
+    /**
+     * 非递归实现
+     */
+    private static void mergeSort2(int[] arr) {
+        if (arr == null || arr.length &lt; 2) {
+            return;
+        }
+        int mergeSize = 1;
+        int maxMergeSize = (arr.length &gt;&gt; 1) + 1;
+        while (mergeSize &lt;= maxMergeSize) {
+            int l = 0;
+            while (l &lt; arr.length) {
+                int m = l + mergeSize - 1;
+                if (m &gt;= arr.length) {
+                    break;
+                }
+                int r = Math.min(m + mergeSize, arr.length - 1);
+                merge(arr, l, m, r);
+                l = r + 1;
+            }
+            mergeSize &lt;&lt;= 1;
+        }
+    }
+}
+</code></pre>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>Master公式</title>
         <author>

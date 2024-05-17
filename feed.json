@@ -10,6 +10,20 @@
     },
     "items": [
         {
+            "id": "https://lhplj.github.io/mergesort.html",
+            "url": "https://lhplj.github.io/mergesort.html",
+            "title": "MergeSort",
+            "summary": "时间复杂度O(N * logN),优于冒泡/选择排序时间复杂度O(N^2) public class MergeSort { public static void main(String[] args) { int[] arr = {20, 24, 5, 17, 14, 25, 15, 52}; mergeSort1(arr); // mergeSort2(arr); } /** * 递归实现 */ private static void mergeSort1(int[] arr) { if (arr == null || arr.length &lt;&hellip;",
+            "content_html": "<p>时间复杂度O(N * logN),优于冒泡/选择排序时间复杂度O(N^2)</p>\n<pre class=\"language-java\"><code>public class MergeSort {\n    public static void main(String[] args) {\n        int[] arr = {20, 24, 5, 17, 14, 25, 15, 52};\n        mergeSort1(arr);\n        //        mergeSort2(arr);\n    }\n\n    /**\n     * 递归实现\n     */\n    private static void mergeSort1(int[] arr) {\n        if (arr == null || arr.length &lt; 2) {\n            return;\n        }\n        process(arr, 0, arr.length - 1);\n    }\n\n    private static void process(int[] arr, int l, int r) {\n        if (l == r) {\n            return;\n        }\n        // 将[l, r] 二分为 [l, m] 和 [m + 1, r]\n        int m = l + (r - l &gt;&gt; 1);\n        process(arr, l, m);\n        process(arr, m + 1, r);\n        merge(arr, l, m, r);\n    }\n\n    private static void merge(int[] arr, int l, int m, int r) {\n        int[] help = new int[r - l + 1];\n        // p1 指向[l,m]\n        // p2 指向[m + 1, r]\n        int i = 0, p1 = l, p2 = m + 1;\n        while (p1 &lt;= m &amp;&amp; p2 &lt;= r) {\n            // 比较左区间与右区间,直到某区间结束\n            help[i++] = arr[p1] &lt;= arr[p2] ? arr[p1++] : arr[p2++];\n        }\n        // 处理未结束的区间\n        while (p1 &lt;= m) {\n            help[i++] = arr[p1++];\n        }\n        while (p2 &lt;= r) {\n            help[i++] = arr[p2++];\n        }\n\n        for (i = 0; i &lt; help.length; i++) {\n            arr[l + i] = help[i];\n        }\n        System.out.println(JSON.toJSON(arr));\n    }\n\n    /**\n     * 非递归实现\n     */\n    private static void mergeSort2(int[] arr) {\n        if (arr == null || arr.length &lt; 2) {\n            return;\n        }\n        int mergeSize = 1;\n        int maxMergeSize = (arr.length &gt;&gt; 1) + 1;\n        while (mergeSize &lt;= maxMergeSize) {\n            int l = 0;\n            while (l &lt; arr.length) {\n                int m = l + mergeSize - 1;\n                if (m &gt;= arr.length) {\n                    break;\n                }\n                int r = Math.min(m + mergeSize, arr.length - 1);\n                merge(arr, l, m, r);\n                l = r + 1;\n            }\n            mergeSize &lt;&lt;= 1;\n        }\n    }\n}\n</code></pre>",
+            "author": {
+                "name": "lhplj"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-05-17T16:20:19+08:00",
+            "date_modified": "2024-05-17T16:22:37+08:00"
+        },
+        {
             "id": "https://lhplj.github.io/mastergong-shi.html",
             "url": "https://lhplj.github.io/mastergong-shi.html",
             "title": "Master公式",
