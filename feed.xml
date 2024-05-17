@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-05-17T16:23:53+08:00</updated>
+    <updated>2024-05-17T16:59:41+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -103,6 +103,65 @@
     }
 }
 </code></pre>
+<p><strong>应用场景:查找数组中每个位置上,左侧或右侧所有比这个数大或小的问题.</strong></p>
+<p><strong>数组小和</strong>:在一个数组中,一个数左边比它小的数的总和,叫数的小和,所有数的小和累加起来,叫数组的小和.(<strong>注意</strong>:由于要统计左侧数据,所以在merge左右区间时,如果遇到相等的数,要先处理右区间的)</p>
+<pre class="language-java"><code>public class SmallSum {
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 4, 2, 5};
+        // 1的左侧小于1的无
+        // 3的左侧小于3的1
+        // 4的左侧小于4的1,3
+        // 2的左侧小于2的1
+        // 5的左侧小于5的1,3,4,2
+        // 小和为 16
+        mergeSort1(arr);
+    }
+
+    /**
+     * 递归实现
+     */
+    private static void mergeSort1(int[] arr) {
+        if (arr == null || arr.length &lt; 2) {
+            return;
+        }
+        int result = process(arr, 0, arr.length - 1);
+        System.out.println(result);
+    }
+
+    private static int process(int[] arr, int l, int r) {
+        if (l == r) {
+            return 0;
+        }
+        int m = l + (r - l &gt;&gt; 1);
+        return process(arr, l, m) + process(arr, m + 1, r) +
+                merge(arr, l, m, r);
+    }
+
+    private static int merge(int[] arr, int l, int m, int r) {
+        int result = 0;
+        int[] help = new int[r - l + 1];
+        int i = 0, p1 = l, p2 = m + 1;
+        while (p1 &lt;= m &amp;&amp; p2 &lt;= r) {
+            result += arr[p1] &lt; arr[p2] ? (r - p2 + 1) * arr[p1] : 0;
+            // 由于要统计左侧数据,所以在merge左右区间时,如果遇到相等的数,要先处理右区间的
+            help[i++] = arr[p1] &lt; arr[p2] ? arr[p1++] : arr[p2++];
+        }
+        while (p1 &lt;= m) {
+            help[i++] = arr[p1++];
+        }
+        while (p2 &lt;= r) {
+            help[i++] = arr[p2++];
+        }
+
+        for (i = 0; i &lt; help.length; i++) {
+            arr[l + i] = help[i];
+        }
+        System.out.println(JSON.toJSON(arr));
+        return result;
+    }
+
+}</code></pre>
+<p><strong>降序对</strong>:在一个数组中,一个数与右边每个比它小的数组成一个降序对,求数组的所有降序对.(<strong>注意</strong>:由于要统计右侧数据,所以在merge左右区间时,如果遇到相等的数,要先处理左区间的)</p>
             ]]>
         </content>
     </entry>
