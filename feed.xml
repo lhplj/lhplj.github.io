@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-05-17T16:22:37+08:00</updated>
+    <updated>2024-05-17T16:23:53+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -20,12 +20,13 @@
         <updated>2024-05-17T16:20:19+08:00</updated>
             <summary>
                 <![CDATA[
-                    时间复杂度O(N * logN),优于冒泡/选择排序时间复杂度O(N^2) public class MergeSort { public static void main(String[] args) { int[] arr = {20, 24, 5, 17, 14, 25, 15, 52}; mergeSort1(arr); // mergeSort2(arr); } /** * 递归实现 */ private static void mergeSort1(int[] arr) { if (arr == null || arr.length &lt;&hellip;
+                    归并排序时间复杂度O(N * logN) 优于冒泡/选择排序时间复杂度O(N^2) public class MergeSort { public static void main(String[] args) { int[] arr = {20, 24, 5, 17, 14, 25, 15, 52}; mergeSort1(arr); // mergeSort2(arr); } /** * 递归实现 */ private static void mergeSort1(int[] arr) { if (arr == null || arr.length&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <p>时间复杂度O(N * logN),优于冒泡/选择排序时间复杂度O(N^2)</p>
+                <p>归并排序时间复杂度O(N * logN)</p>
+<p>优于冒泡/选择排序时间复杂度O(N^2)</p>
 <pre class="language-java"><code>public class MergeSort {
     public static void main(String[] args) {
         int[] arr = {20, 24, 5, 17, 14, 25, 15, 52};
