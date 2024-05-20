@@ -3,12 +3,101 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-05-17T16:59:41+08:00</updated>
+    <updated>2024-05-20T09:01:00+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
+    <entry>
+        <title>ReverseLinkedList</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/reverselinkedlist.html"/>
+        <id>https://lhplj.github.io/reverselinkedlist.html</id>
+
+        <updated>2024-05-20T09:00:01+08:00</updated>
+            <summary>
+                <![CDATA[
+                    public class ReverseLinkedList { class Node&lt;T&gt; { private T value; private Node&lt;T&gt; next; } public static void main(String[] args) { ReverseLinkedList.Node&lt;Integer&gt; head = build(); print(head); print(reverse(head)); } private static Node&lt;Integer&gt; build() { ReverseLinkedList x = new ReverseLinkedList(); Node&lt;Integer&gt; head = x.new Node&lt;&gt;(); head.value = 0;&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <pre class="language-java"><code>public class ReverseLinkedList {
+
+    class Node&lt;T&gt; {
+        private T value;
+        private Node&lt;T&gt; next;
+    }
+
+    public static void main(String[] args) {
+        ReverseLinkedList.Node&lt;Integer&gt; head = build();
+        print(head);
+        print(reverse(head));
+    }
+
+    private static Node&lt;Integer&gt; build() {
+        ReverseLinkedList x = new ReverseLinkedList();
+        Node&lt;Integer&gt; head = x.new Node&lt;&gt;();
+        head.value = 0;
+        Node&lt;Integer&gt; cur = head;
+        for (int i = 1; i &lt; 10; i++) {
+            Node&lt;Integer&gt; next = x.new Node&lt;&gt;();
+            next.value = i;
+            cur.next = next;
+
+            cur = next;
+        }
+        return head;
+    }
+
+    /**
+     * 打印链表
+     * @param head
+     */
+    private static void print(Node&lt;Integer&gt; head) {
+        if (head == null) {
+            return;
+        }
+        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+        list.add(head.value);
+        Node&lt;Integer&gt; next = head.next;
+        while (next != null) {
+            list.add(next.value);
+            next = next.next;
+        }
+        System.out.println(JSON.toJSONString(list));
+    }
+
+    /**
+     * 反转后返回新head
+     * @param head
+     * @return
+     */
+    private static Node&lt;Integer&gt; reverse(Node&lt;Integer&gt; head) {
+        Node&lt;Integer&gt; pre = null;
+        Node&lt;Integer&gt; node = head;
+        Node&lt;Integer&gt; next = head.next;
+        while (next != null) {
+            next = node.next;
+            node.next = pre;
+
+            pre = node;
+            if (next == null) {
+                break;
+            }
+            node = next;
+        }
+        return node;
+    }
+
+}
+</code></pre>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>MergeSort</title>
         <author>

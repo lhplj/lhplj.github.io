@@ -10,6 +10,20 @@
     },
     "items": [
         {
+            "id": "https://lhplj.github.io/reverselinkedlist.html",
+            "url": "https://lhplj.github.io/reverselinkedlist.html",
+            "title": "ReverseLinkedList",
+            "summary": "public class ReverseLinkedList { class Node&lt;T&gt; { private T value; private Node&lt;T&gt; next; } public static void main(String[] args) { ReverseLinkedList.Node&lt;Integer&gt; head = build(); print(head); print(reverse(head)); } private static Node&lt;Integer&gt; build() { ReverseLinkedList x = new ReverseLinkedList(); Node&lt;Integer&gt; head = x.new Node&lt;&gt;(); head.value = 0;&hellip;",
+            "content_html": "<pre class=\"language-java\"><code>public class ReverseLinkedList {\n\n    class Node&lt;T&gt; {\n        private T value;\n        private Node&lt;T&gt; next;\n    }\n\n    public static void main(String[] args) {\n        ReverseLinkedList.Node&lt;Integer&gt; head = build();\n        print(head);\n        print(reverse(head));\n    }\n\n    private static Node&lt;Integer&gt; build() {\n        ReverseLinkedList x = new ReverseLinkedList();\n        Node&lt;Integer&gt; head = x.new Node&lt;&gt;();\n        head.value = 0;\n        Node&lt;Integer&gt; cur = head;\n        for (int i = 1; i &lt; 10; i++) {\n            Node&lt;Integer&gt; next = x.new Node&lt;&gt;();\n            next.value = i;\n            cur.next = next;\n\n            cur = next;\n        }\n        return head;\n    }\n\n    /**\n     * 打印链表\n     * @param head\n     */\n    private static void print(Node&lt;Integer&gt; head) {\n        if (head == null) {\n            return;\n        }\n        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();\n        list.add(head.value);\n        Node&lt;Integer&gt; next = head.next;\n        while (next != null) {\n            list.add(next.value);\n            next = next.next;\n        }\n        System.out.println(JSON.toJSONString(list));\n    }\n\n    /**\n     * 反转后返回新head\n     * @param head\n     * @return\n     */\n    private static Node&lt;Integer&gt; reverse(Node&lt;Integer&gt; head) {\n        Node&lt;Integer&gt; pre = null;\n        Node&lt;Integer&gt; node = head;\n        Node&lt;Integer&gt; next = head.next;\n        while (next != null) {\n            next = node.next;\n            node.next = pre;\n\n            pre = node;\n            if (next == null) {\n                break;\n            }\n            node = next;\n        }\n        return node;\n    }\n\n}\n</code></pre>",
+            "author": {
+                "name": "lhplj"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-05-20T09:00:01+08:00",
+            "date_modified": "2024-05-20T09:01:00+08:00"
+        },
+        {
             "id": "https://lhplj.github.io/mergesort.html",
             "url": "https://lhplj.github.io/mergesort.html",
             "title": "MergeSort",
