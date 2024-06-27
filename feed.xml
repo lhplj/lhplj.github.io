@@ -3,12 +3,37 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-05-20T09:01:00+08:00</updated>
+    <updated>2024-06-27T15:39:10+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
+    <entry>
+        <title>VSCODE正则替换</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/vscodezheng-ze-ti-huan.html"/>
+        <id>https://lhplj.github.io/vscodezheng-ze-ti-huan.html</id>
+
+        <updated>2024-06-27T15:36:28+08:00</updated>
+            <summary>
+                <![CDATA[
+                    小写转大写:如将下划线分隔的单词转驼峰 查找 _([a-z]) 替换 \U$1 \L 大写字母转小写 \U 小写字母转大写 $1 为正则匹配的第一项
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>小写转大写:如将下划线分隔的单词转驼峰</p>
+<p>查找 _([a-z])</p>
+<p>替换 \U$1</p>
+<p>\L 大写字母转小写</p>
+<p>\U 小写字母转大写</p>
+<p>$1 为正则匹配的第一项</p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>ReverseLinkedList</title>
         <author>

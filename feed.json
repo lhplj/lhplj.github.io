@@ -10,6 +10,20 @@
     },
     "items": [
         {
+            "id": "https://lhplj.github.io/vscodezheng-ze-ti-huan.html",
+            "url": "https://lhplj.github.io/vscodezheng-ze-ti-huan.html",
+            "title": "VSCODE正则替换",
+            "summary": "小写转大写:如将下划线分隔的单词转驼峰 查找 _([a-z]) 替换 \\U$1 \\L 大写字母转小写 \\U 小写字母转大写 $1 为正则匹配的第一项",
+            "content_html": "<p>小写转大写:如将下划线分隔的单词转驼峰</p>\n<p>查找 _([a-z])</p>\n<p>替换 \\U$1</p>\n<p>\\L 大写字母转小写</p>\n<p>\\U 小写字母转大写</p>\n<p>$1 为正则匹配的第一项</p>",
+            "author": {
+                "name": "lhplj"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-06-27T15:36:28+08:00",
+            "date_modified": "2024-06-27T15:39:10+08:00"
+        },
+        {
             "id": "https://lhplj.github.io/reverselinkedlist.html",
             "url": "https://lhplj.github.io/reverselinkedlist.html",
             "title": "ReverseLinkedList",
