@@ -69,15 +69,15 @@
             "id": "https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html",
             "url": "https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html",
             "title": "求整数二进制位最右(低)1的位置",
-            "summary": "# 对于任意整数N,求N的二进制位最右1的位置 int pos = N &amp; ((~N) + 1); 对原数先取反再加1,最后再与原数进行与操作即可 使用场景 int count = 0; int rightOne = -1; while (N != 0) { # 找最后边为1的位置 rightOne = N &amp; ((~N) + 1); count++; # 将N中最后边的1消掉 N ^= rightOne; } 一个数组中有两种数是奇数个,找出这两种数 # 假设数组 arr&hellip;",
-            "content_html": "<pre class=\"language-java\"><code># 对于任意整数N,求N的二进制位最右1的位置\nint pos = N &amp; ((~N) + 1);</code></pre>\n<p>对原数先取反再加1,最后再与原数进行与操作即可</p>\n<p>使用场景</p>\n<ol>\n<li>求整数N二进制中1的数量\n<pre class=\"language-java\"><code>int count = 0;\nint rightOne = -1;\nwhile (N != 0) {\n    # 找最后边为1的位置\n    rightOne = N &amp; ((~N) + 1);\n    count++;\n    # 将N中最后边的1消掉\n    N ^= rightOne;\n}</code></pre>\n</li>\n<li>一个数组中有两种数是奇数个,找出这两种数\n<pre class=\"language-java\"><code># 假设数组 arr 中的这两种数为 a 和 b\nint eor = 0;\nfor (int i = 0; i &lt; arr.length; i++) {\n    eor ^= arr[i];\n}\n# 此时 eor = a ^ b\n# 因为 a != b 则 eor != 0 则必有二进制位有1\nint rigthOne = eor &amp; ((~eor) + 1);\n# 则对于 a 和 b 必有一个rigthOne 位置为1一个为 0\n# 则必有 rightOne ^ a 和 rightOne ^ b 一个为1一个为0(可通过此方法将a与b分开)\nint a = 0;\nfor (int i = 0; i &lt; arr.length; i++) {\n    if (arr[i] &amp; rightOne != 0) {\n        a ^= arr[i];\n    }\n}\nint b = eor ^ a;</code></pre>\n</li>\n</ol>",
+            "summary": "# 对于任意整数N,求N的二进制位最右1的位置 int pos = N &amp; ((~N) + 1); # 注意上述得到的结果是保留最右1,其余位为0后对应的10进制整数,不是从右向左的序号(从0开始) # 如12的二进制为 0000 1100 # 取反后为 1111 0011 # 取反加1后为 1111 0100 # 与原数&amp;后为 0000 0100 # 对应的10进制整数为 4 # 如果要得到从右向左的序号(从0开始),可以使用以下两种方法 # 方法1 Integer.toBinaryString(n &amp; ~n + 1).length() - 1; # 方法2 (取2的对数)&hellip;",
+            "content_html": "<pre class=\"language-java\"><code># 对于任意整数N,求N的二进制位最右1的位置\nint pos = N &amp; ((~N) + 1);\n# 注意上述得到的结果是保留最右1,其余位为0后对应的10进制整数,不是从右向左的序号(从0开始)\n# 如12的二进制为 0000 1100\n# 取反后为           1111 0011\n# 取反加1后为      1111 0100\n# 与原数&amp;后为      0000 0100\n# 对应的10进制整数为 4\n# 如果要得到从右向左的序号(从0开始),可以使用以下两种方法\n# 方法1\nInteger.toBinaryString(n &amp; ~n + 1).length() - 1;\n# 方法2 (取2的对数)\nMath.log(n &amp; ~n + 1) / Math.log(2);\n# JDK 中只有 自然对数(以e为底)Math.log(double) 及 常用对数(以10为底)Math.log10(double) 的计算方法\n# 其它的可以使用公式 log(a)(b) = ln(b)/ln(a) 或 log(a)(b) = log(10)(b)/log(10)(a)</code></pre>\n<p>对原数先取反再加1,最后再与原数进行与操作即可</p>\n<p>使用场景</p>\n<ol>\n<li>求整数N二进制中1的数量\n<pre class=\"language-java\"><code>int count = 0;\nint rightOne = -1;\nwhile (N != 0) {\n    # 找最后边为1的位置\n    rightOne = N &amp; ((~N) + 1);\n    count++;\n    # 将N中最后边的1消掉\n    N ^= rightOne;\n}</code></pre>\n</li>\n<li>一个数组中有两种数是奇数个,找出这两种数\n<pre class=\"language-java\"><code># 假设数组 arr 中的这两种数为 a 和 b\nint eor = 0;\nfor (int i = 0; i &lt; arr.length; i++) {\n    eor ^= arr[i];\n}\n# 此时 eor = a ^ b\n# 因为 a != b 则 eor != 0 则必有二进制位有1\nint rigthOne = eor &amp; ((~eor) + 1);\n# 则对于 a 和 b 必有一个rigthOne 位置为1一个为 0\n# 则必有 rightOne ^ a 和 rightOne ^ b 一个为1一个为0(可通过此方法将a与b分开)\nint a = 0;\nfor (int i = 0; i &lt; arr.length; i++) {\n    if (arr[i] &amp; rightOne != 0) {\n        a ^= arr[i];\n    }\n}\nint b = eor ^ a;</code></pre>\n</li>\n</ol>",
             "author": {
                 "name": "lhplj"
             },
             "tags": [
             ],
             "date_published": "2024-05-15T14:59:17+08:00",
-            "date_modified": "2024-05-15T15:19:20+08:00"
+            "date_modified": "2024-07-10T14:45:20+08:00"
         },
         {
             "id": "https://lhplj.github.io/yi-huo.html",
