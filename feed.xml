@@ -3,12 +3,61 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-07-10T14:45:20+08:00</updated>
+    <updated>2024-07-23T14:50:14+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
+    <entry>
+        <title>logrorate</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/logrorate.html"/>
+        <id>https://lhplj.github.io/logrorate.html</id>
+
+        <updated>2024-07-23T14:50:14+08:00</updated>
+            <summary>
+                <![CDATA[
+                    linux自带的日志文件管理工具 # 主配置文件,通过 include /etc/logrorate.d 加载目录下的所有日志管理脚本 /etc/logrorate.conf # 日志管理脚本目录 /etc/logrorate.d/ # 以 nginx 日志切割与归档为例 # 以下为 /etc/logrorate.d/nginx 的内容 /home/devops/install/nginx/logs/*log { create 0664 root root daily dateext rotate 180 missingok notifempty compress sharedscripts postrotate /bin/kill -USR1 `cat /home/devops/install/nginx/logs/nginx.pid 2&gt;/dev/null` 2&gt;/dev/null || true endscript } # create&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>linux自带的日志文件管理工具</p>
+<pre class="language-bash"><code># 主配置文件,通过 include /etc/logrorate.d 加载目录下的所有日志管理脚本
+/etc/logrorate.conf
+# 日志管理脚本目录
+/etc/logrorate.d/
+
+# 以 nginx 日志切割与归档为例
+# 以下为 /etc/logrorate.d/nginx 的内容
+/home/devops/install/nginx/logs/*log {
+    create 0664 root root
+    daily
+    dateext
+    rotate 180
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    postrotate
+        /bin/kill -USR1 `cat /home/devops/install/nginx/logs/nginx.pid 2&gt;/dev/null` 2&gt;/dev/null || true
+    endscript
+}
+
+# create 以指定权限创建新的日志文件
+# daily 处理频率 daily 每天 monthly 每月 weekly 每周 yearly 每年
+# dateext 使用日期格式作为命名格式
+# rorate 180 最多存储 180 个归档日志,超出后删除时间最久的
+# missingok 忽略错误
+# notifempy 忽略空日志文件的处理
+# compress 归档后进行压缩
+# sharedscripts postrorate endscript 通常一起出现</code></pre>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>VSCODE正则替换</title>
         <author>
