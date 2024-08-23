@@ -10,6 +10,20 @@
     },
     "items": [
         {
+            "id": "https://lhplj.github.io/gaussdb.html",
+            "url": "https://lhplj.github.io/gaussdb.html",
+            "title": "GaussDB",
+            "summary": "-- 查询表信息 select * from pg_tables; -- 查询 schema 下的表信息 select * from pg_tables where schemaname = 'schemaname'; -- 查询表定义 select * from pg_get_tabledef('schema.tablename');",
+            "content_html": "<pre class=\"language-sql\"><code>-- 查询表信息\nselect * from pg_tables;\n-- 查询 schema 下的表信息\nselect * from pg_tables where schemaname = 'schemaname';\n-- 查询表定义\nselect * from pg_get_tabledef('schema.tablename');</code></pre>",
+            "author": {
+                "name": "lhplj"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-08-23T11:00:38+08:00",
+            "date_modified": "2024-08-23T11:00:38+08:00"
+        },
+        {
             "id": "https://lhplj.github.io/logrorate.html",
             "url": "https://lhplj.github.io/logrorate.html",
             "title": "logrorate",
