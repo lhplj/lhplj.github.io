@@ -3,12 +3,33 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-08-23T11:00:38+08:00</updated>
+    <updated>2024-08-27T10:39:20+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
+    <entry>
+        <title>top</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/top.html"/>
+        <id>https://lhplj.github.io/top.html</id>
+
+        <updated>2024-08-27T10:36:20+08:00</updated>
+            <summary>
+                <![CDATA[
+                    显示 swap 执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h1>显示 swap </h1>
+<p>执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小</p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>GaussDB</title>
         <author>

@@ -10,6 +10,20 @@
     },
     "items": [
         {
+            "id": "https://lhplj.github.io/top.html",
+            "url": "https://lhplj.github.io/top.html",
+            "title": "top",
+            "summary": "显示 swap 执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小",
+            "content_html": "<h1>显示 swap </h1>\n<p>执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小</p>",
+            "author": {
+                "name": "lhplj"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-08-27T10:36:20+08:00",
+            "date_modified": "2024-08-27T10:39:20+08:00"
+        },
+        {
             "id": "https://lhplj.github.io/gaussdb.html",
             "url": "https://lhplj.github.io/gaussdb.html",
             "title": "GaussDB",
