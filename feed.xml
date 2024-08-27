@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-08-27T11:31:31+08:00</updated>
+    <updated>2024-08-27T11:37:55+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -72,19 +72,19 @@
 jps -l
 # jinfo pid 可以查看JVM进程所有的属性设置和配置参数(63936 为进程ID)
 jinfo 63936
-# 通过jmap查看 JVM 的堆的配置信息，其中1297位进程的pid
+# 通过jmap查看 JVM 的堆的配置信息(63936 为进程ID)
 jmap -heap 63936
 </code></pre>
 <h3 id="jvm内存结构">JVM内存结构</h3>
 <ul>
-<li>Heap(-Xms -Xmx)<ul>
-<li>Young新生代(-Xmn 默认Heap的1/3)<ul>
+<li>Heap(-Xms -Xmx)(Full GC)<ul>
+<li>Young新生代(-Xmn 默认Heap的1/3 )(Minor GC)<ul>
 <li>Eden伊甸园区(默认Young的8/10)</li>
 <li>Survivor0(From)幸存者0区(默认Young的1/10)</li>
 <li>Survivor1(To)幸存者1区(默认Young的1/10)</li>
 </ul>
 </li>
-<li>Old老年代(默认Heap的2/3)</li>
+<li>Old老年代(默认Heap的2/3)(Major GC)</li>
 </ul>
 </li>
 <li>Perm(JDK7永久区 -XX:PermSize JDK8元空间)<ul>
