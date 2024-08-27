@@ -3,12 +3,53 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-08-27T10:39:20+08:00</updated>
+    <updated>2024-08-27T10:54:10+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
+    <entry>
+        <title>JVM</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/jvm.html"/>
+        <id>https://lhplj.github.io/jvm.html</id>
+
+        <updated>2024-08-27T10:42:08+08:00</updated>
+            <summary>
+                <![CDATA[
+                    内存参数 -Xms 堆内存初始大小(等同于 -XX:InitialHeapSize ) -Xmx 堆内存最大大小(等同于 -XX:MaxHeapSize ) -Xmn 新生代大小,扣除新生代剩下的就是老年代大小(等同于 -XX:NewSize 及 -XX:MaxNewSize 会覆盖这两个的配置) -Xss 线程栈大小 -XX:NewSize 初始新生代大小 -XX:MaxNewSize 最大新生代大小 -XX:InitialHeapSize 初始堆大小 -XX:MaxHeapSize 最大堆大小 -XX:MetaspaceSize 元空间（永久代）大小，jdk1.8 之前用 -XX:PermSize 设置 -XX:MaxMetaspaceSize 元空间（永久代）最大大小，jdk8 之前用 -XX:MaxPermSize 设置 -XX:SurvivorRatio 新生代 Eden 区和 Survivor 区的比例，默认为 8，即8:1:1 一般-XX:MetaspaceSize 和 -XX:MaxMetaspaceSize&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h3 id="内存参数">内存参数</h3>
+<pre><code>-Xms 堆内存初始大小(等同于 -XX:InitialHeapSize )
+-Xmx 堆内存最大大小(等同于 -XX:MaxHeapSize )
+-Xmn 新生代大小,扣除新生代剩下的就是老年代大小(等同于 -XX:NewSize 及 -XX:MaxNewSize 会覆盖这两个的配置)
+-Xss 线程栈大小
+-XX:NewSize 初始新生代大小
+-XX:MaxNewSize 最大新生代大小
+-XX:InitialHeapSize 初始堆大小
+-XX:MaxHeapSize 最大堆大小
+-XX:MetaspaceSize 元空间（永久代）大小，jdk1.8 之前用 -XX:PermSize 设置
+-XX:MaxMetaspaceSize 元空间（永久代）最大大小，jdk8 之前用 -XX:MaxPermSize 设置
+-XX:SurvivorRatio 新生代 Eden 区和 Survivor 区的比例，默认为 8，即8:1:1
+</code></pre>
+<p>一般-XX:MetaspaceSize 和 -XX:MaxMetaspaceSize 设置一样的大小, -Xms 和 -Xmx 设置一样的大小，这意味着堆内存的大小在整个程序运行期间不会发生变化,
+这种配置有几个影响：</p><ol>
+<li>减少垃圾回收的频率：当堆的大小固定时，垃圾回收（GC）可以更容易地进行优化，因为它只需要处理固定大小的内存。如果堆大小变动，JVM 需要管理堆的调整，这可能会影响 GC 的效率。</li>
+<li>避免动态调整带来的性能损失：固定堆大小可以避免在运行过程中动态调整堆内存大小带来的性能开销。这通常会减少垃圾回收时的停顿时间，因为堆的大小不会因应用负载的变化而波动。</li>
+<li>潜在的内存不足问题：如果应用程序的内存需求超出了设置的 -Xmx 值，那么固定堆大小并不能防止 OutOfMemoryError 错误。你需要确保 -Xmx 设置的值足够大，以满足应用程序的内存需求。</li>
+<li>GC 调优：虽然固定堆大小可以减少 GC 的频率和复杂性，但 GC 的具体行为还取决于所使用的 GC 算法和其他 JVM 参数。你可能仍然需要根据应用程序的需求进行 GC 参数的调优。
+总结来说，将 -Xms 和 -Xmx 设置为相同的值可以帮助减少由于堆内存调整引起的性能问题，但并不能完全避免垃圾回收。GC 的发生仍然取决于应用程序的内存使用模式和所选择的垃圾回收算法。</li>
+</ol>
+
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>top</title>
         <author>
@@ -529,27 +570,6 @@ for (int i = 0; i &lt; arr.length; i++) {
 </li>
 </ol>
 <p> </p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>晶晶</title>
-        <author>
-            <name>lhplj</name>
-        </author>
-        <link href="https://lhplj.github.io/test.html"/>
-        <id>https://lhplj.github.io/test.html</id>
-
-        <updated>2024-05-14T18:19:10+08:00</updated>
-            <summary>
-                <![CDATA[
-                    晶晶 爱你哟!
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>晶晶
-爱你哟!</p>
             ]]>
         </content>
     </entry>
