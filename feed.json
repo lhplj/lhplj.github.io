@@ -41,15 +41,15 @@
             "id": "https://lhplj.github.io/top.html",
             "url": "https://lhplj.github.io/top.html",
             "title": "top",
-            "summary": "显示 swap 执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小",
-            "content_html": "<h1>显示 swap </h1>\n<p>执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小</p>",
+            "summary": "显示 swap 执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小 top -o &lt;列名&gt; # 按SWSP排序 top -o SWAP # 按CPU使用率排序 top -o %CPU",
+            "content_html": "<h1>显示 swap </h1>\n<p>执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小</p>\n<h1>排序</h1>\n<pre class=\"language-bash\"><code>top -o &lt;列名&gt;\n# 按SWSP排序\ntop -o SWAP\n# 按CPU使用率排序\ntop -o %CPU</code></pre>",
             "author": {
                 "name": "lhplj"
             },
             "tags": [
             ],
             "date_published": "2024-08-27T10:36:20+08:00",
-            "date_modified": "2024-08-27T10:39:20+08:00"
+            "date_modified": "2024-09-02T09:24:55+08:00"
         },
         {
             "id": "https://lhplj.github.io/gaussdb.html",

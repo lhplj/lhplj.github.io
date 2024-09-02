@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-08-27T15:12:33+08:00</updated>
+    <updated>2024-09-02T09:24:55+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -204,13 +204,19 @@ jmap -heap 63936
         <updated>2024-08-27T10:36:20+08:00</updated>
             <summary>
                 <![CDATA[
-                    显示 swap 执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小
+                    显示 swap 执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小 top -o &lt;列名&gt; # 按SWSP排序 top -o SWAP # 按CPU使用率排序 top -o %CPU
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <h1>显示 swap </h1>
 <p>执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小</p>
+<h1>排序</h1>
+<pre class="language-bash"><code>top -o &lt;列名&gt;
+# 按SWSP排序
+top -o SWAP
+# 按CPU使用率排序
+top -o %CPU</code></pre>
             ]]>
         </content>
     </entry>
