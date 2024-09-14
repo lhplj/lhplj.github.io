@@ -3,14 +3,77 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-09-02T09:24:55+08:00</updated>
+    <updated>2024-09-14T15:50:03+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
     <entry>
-        <title>Java-Case1</title>
+        <title>jj</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/jj.html"/>
+        <id>https://lhplj.github.io/jj.html</id>
+
+        <updated>2024-09-14T15:25:28+08:00</updated>
+            <summary>
+                <![CDATA[
+                    var chartDom = document.getElementById('main'); var myChart = echarts.init(chartDom); var option; option = { title: { text: '晶晶' }, tooltip: { trigger: 'axis' }, xAxis: { type: 'category', data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }, yAxis: { type: 'value'&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+</p>
+<!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+<div id="main" style="width: 600px; height: 400px;"></div>
+<p>
+<script type="text/javascript">
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+      title: {
+        text: '晶晶'
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      xAxis: {
+        type: 'category',
+        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          name: '24开始',
+          data: [7, 5, 7, 6, 9, 7, 8, 8, 9, 0, 0, 0],
+          type: 'line',
+          smooth: true
+        },
+        {
+          name: '24结束',
+          data: [14, 12, 14, 13, 16, 14, 15, 15, 16, 0, 0, 0],
+          type: 'line',
+          smooth: true
+        }
+      ]
+    };
+
+    option && myChart.setOption(option);
+  </script>
+</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>Java-Case0</title>
         <author>
             <name>lhplj</name>
         </author>
@@ -132,12 +195,13 @@ print Son.x = 40
 总结来说，将 -Xms 和 -Xmx 设置为相同的值可以帮助减少由于堆内存调整引起的性能问题，但并不能完全避免垃圾回收。GC 的发生仍然取决于应用程序的内存使用模式和所选择的垃圾回收算法。</li>
 </ol>
 <h3 id="gc参数">GC参数</h3>
-<pre><code>-XX:+PrintGCDetails：输出详细的 GC 信息。
--XX:+PrintGCDateStamps：在 GC 日志中添加时间戳。
--Xloggc:/path/to/gc.log：指定 GC 日志文件的路径。
--XX:+UseG1GC：使用 G1 垃圾回收器。
--XX:+UseParallelGC：使用并行垃圾回收器。
--XX:+UseConcMarkSweepGC：使用 CMS 垃圾回收器（注意，CMS 从 JDK 14 开始已被弃用）。
+<pre><code>-XX:+PrintGCDetails 输出详细的 GC 信息。
+-XX:+PrintGCDateStamps 在 GC 日志中添加时间戳。
+-XX:+UseGCLogFileRotation GC日志分割
+-Xloggc:/path/to/gc.log 指定 GC 日志文件的路径。
+-XX:+UseG1GC 使用 G1 垃圾回收器。
+-XX:+UseParallelGC 使用并行垃圾回收器。
+-XX:+UseConcMarkSweepGC 使用 CMS 垃圾回收器（注意，CMS 从 JDK 14 开始已被弃用）。
 </code></pre>
 <h4 id="full-gc">Full GC</h4>
 <p>Full GC是指对整个堆内存（包括新生代和老年代）以及元空间进行垃圾回收的过程。Full GC通常比Minor GC（只针对新生代进行垃圾回收）要耗时更长，并且会导致所有用户线程暂停（Stop The World），因此应该尽量避免或减少Full GC的发生。
@@ -589,74 +653,6 @@ select * from pg_get_tabledef('schema.tablename');</code></pre>
 <li>如果log(b,a) &lt; d 复杂度为 O(N^d)</li>
 <li>如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a))</li>
 <li>如果log(b,a) = d 复杂度为 O(N^d * logN)</li>
-</ol>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>求整数二进制位最右(低)1的位置</title>
-        <author>
-            <name>lhplj</name>
-        </author>
-        <link href="https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html"/>
-        <id>https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html</id>
-
-        <updated>2024-05-15T14:59:17+08:00</updated>
-            <summary>
-                <![CDATA[
-                    # 对于任意整数N,求N的二进制位最右1的位置 int pos = N &amp; ((~N) + 1); # 注意上述得到的结果是保留最右1,其余位为0后对应的10进制整数,不是从右向左的序号(从0开始) # 如12的二进制为 0000 1100 # 取反后为 1111 0011 # 取反加1后为 1111 0100 # 与原数&amp;后为 0000 0100 # 对应的10进制整数为 4 # 如果要得到从右向左的序号(从0开始),可以使用以下两种方法 # 方法1 Integer.toBinaryString(n &amp; ~n + 1).length() - 1; # 方法2 (取2的对数)&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <pre class="language-java"><code># 对于任意整数N,求N的二进制位最右1的位置
-int pos = N &amp; ((~N) + 1);
-# 注意上述得到的结果是保留最右1,其余位为0后对应的10进制整数,不是从右向左的序号(从0开始)
-# 如12的二进制为 0000 1100
-# 取反后为           1111 0011
-# 取反加1后为      1111 0100
-# 与原数&amp;后为      0000 0100
-# 对应的10进制整数为 4
-# 如果要得到从右向左的序号(从0开始),可以使用以下两种方法
-# 方法1
-Integer.toBinaryString(n &amp; ~n + 1).length() - 1;
-# 方法2 (取2的对数)
-Math.log(n &amp; ~n + 1) / Math.log(2);
-# JDK 中只有 自然对数(以e为底)Math.log(double) 及 常用对数(以10为底)Math.log10(double) 的计算方法
-# 其它的可以使用公式 log(a)(b) = ln(b)/ln(a) 或 log(a)(b) = log(10)(b)/log(10)(a)</code></pre>
-<p>对原数先取反再加1,最后再与原数进行与操作即可</p>
-<p>使用场景</p>
-<ol>
-<li>求整数N二进制中1的数量
-<pre class="language-java"><code>int count = 0;
-int rightOne = -1;
-while (N != 0) {
-    # 找最后边为1的位置
-    rightOne = N &amp; ((~N) + 1);
-    count++;
-    # 将N中最后边的1消掉
-    N ^= rightOne;
-}</code></pre>
-</li>
-<li>一个数组中有两种数是奇数个,找出这两种数
-<pre class="language-java"><code># 假设数组 arr 中的这两种数为 a 和 b
-int eor = 0;
-for (int i = 0; i &lt; arr.length; i++) {
-    eor ^= arr[i];
-}
-# 此时 eor = a ^ b
-# 因为 a != b 则 eor != 0 则必有二进制位有1
-int rigthOne = eor &amp; ((~eor) + 1);
-# 则对于 a 和 b 必有一个rigthOne 位置为1一个为 0
-# 则必有 rightOne ^ a 和 rightOne ^ b 一个为1一个为0(可通过此方法将a与b分开)
-int a = 0;
-for (int i = 0; i &lt; arr.length; i++) {
-    if (arr[i] &amp; rightOne != 0) {
-        a ^= arr[i];
-    }
-}
-int b = eor ^ a;</code></pre>
-</li>
 </ol>
             ]]>
         </content>
