@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-09-14T16:36:40+08:00</updated>
+    <updated>2024-09-18T09:11:46+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -59,7 +59,7 @@
         },
         {
           name: '24-2',
-          data: [14, 12, 14, 13, 16, 14, 15, 15, 16, 0, 0, 0],
+          data: [14, 12, 14, 13, 16, 14, 15, 15, 18, 0, 0, 0],
           type: 'line',
           smooth: true
         }
