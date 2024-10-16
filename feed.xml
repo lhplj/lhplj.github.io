@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-09-18T09:11:46+08:00</updated>
+    <updated>2024-10-16T10:04:49+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -258,7 +258,7 @@ jmap -heap 63936
         </content>
     </entry>
     <entry>
-        <title>top</title>
+        <title>linux常用命令</title>
         <author>
             <name>lhplj</name>
         </author>
@@ -268,19 +268,30 @@ jmap -heap 63936
         <updated>2024-08-27T10:36:20+08:00</updated>
             <summary>
                 <![CDATA[
-                    显示 swap 执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小 top -o &lt;列名&gt; # 按SWSP排序 top -o SWAP # 按CPU使用率排序 top -o %CPU
+                    top 显示 swap 执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小 top -o &lt;列名&gt; # 按SWSP排序 top -o SWAP # 按CPU使用率排序 top -o %CPU lsof # lsof -i:端口号 查询端口号是否被占用 lsof -i:26379 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME redis-ser 24071 root 6u IPv4 125225 0t0 TCP *:26379 (LISTEN) pwdx #&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <h1>显示 swap </h1>
+                <h1>top</h1>
+<h2>显示 swap </h2>
 <p>执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小</p>
-<h1>排序</h1>
+<h2>排序</h2>
 <pre class="language-bash"><code>top -o &lt;列名&gt;
 # 按SWSP排序
 top -o SWAP
 # 按CPU使用率排序
 top -o %CPU</code></pre>
+<h1>lsof</h1>
+<pre class="language-bash"><code># lsof -i:端口号 查询端口号是否被占用
+lsof -i:26379
+COMMAND      PID USER   FD   TYPE    DEVICE SIZE/OFF NODE NAME
+redis-ser  24071 root    6u  IPv4    125225      0t0  TCP *:26379 (LISTEN)
+</code></pre>
+<h1>pwdx</h1>
+<pre class="language-bash"><code># pwdx pid 查看进程启动时的工作目录
+pwdx 24071
+24071: /home/devops/install/redis-cluster/redis_26379</code></pre>
             ]]>
         </content>
     </entry>
