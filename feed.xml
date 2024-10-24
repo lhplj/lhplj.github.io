@@ -3,12 +3,232 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-10-16T10:04:49+08:00</updated>
+    <updated>2024-10-24T09:39:24+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
+    <entry>
+        <title>Spring+Nacos加载配置流程</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/springnacosjia-zai-pei-zhi-liu-cheng.html"/>
+        <id>https://lhplj.github.io/springnacosjia-zai-pei-zhi-liu-cheng.html</id>
+
+        <updated>2024-10-24T08:54:29+08:00</updated>
+            <summary>
+                <![CDATA[
+                    org.springframework.boot.SpringApplication public ConfigurableApplicationContext run(String... args) { ... ConfigurableEnvironment environment = prepareEnvironment(listeners, applicationArguments); ... } private ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners listeners, ApplicationArguments applicationArguments) { ... listeners.environmentPrepared(environment); .. } org.springframework.boot.SpringApplicationRunListeners void environmentPrepared(ConfigurableEnvironment environment) { for (SpringApplicationRunListener listener : this.listeners) { listener.environmentPrepared(environment); } } org.springframework.boot.SpringApplicationRunListener default void environmentPrepared(ConfigurableEnvironment environment) {}&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <ol>
+<li>org.springframework.boot.SpringApplication
+<pre class="language-java"><code>public ConfigurableApplicationContext run(String... args) {
+    ...
+    ConfigurableEnvironment environment = prepareEnvironment(listeners, applicationArguments);
+    ...
+}
+
+private ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners listeners,
+        ApplicationArguments applicationArguments) {
+    ...
+    listeners.environmentPrepared(environment);
+    ..
+}</code></pre>
+</li>
+<li>org.springframework.boot.SpringApplicationRunListeners
+<pre class="language-java"><code>void environmentPrepared(ConfigurableEnvironment environment) {
+    for (SpringApplicationRunListener listener : this.listeners) {
+        listener.environmentPrepared(environment);
+    }
+}</code></pre>
+</li>
+<li>org.springframework.boot.SpringApplicationRunListener
+<pre class="language-java"><code>default void environmentPrepared(ConfigurableEnvironment environment) {}</code></pre>
+</li>
+<li>org.springframework.boot.context.event.EventPublishingRunListener
+<pre class="language-java"><code>@Override
+public void environmentPrepared(ConfigurableEnvironment environment) {
+    this.initialMulticaster.multicastEvent(new ApplicationEnvironmentPreparedEvent(this.application, this.args, environment));
+}</code></pre>
+</li>
+<li>org.springframework.context.event.SimpleApplicationEventMulticaster
+<pre class="language-java"><code>@Override
+public void multicastEvent(ApplicationEvent event) {
+	multicastEvent(event, resolveDefaultEventType(event));
+}
+
+@Override
+public void multicastEvent(final ApplicationEvent event, @Nullable ResolvableType eventType) {
+	...
+	invokeListener(listener, event);
+	...
+}
+
+/**
+ * Invoke the given listener with the given event.
+ * @param listener the ApplicationListener to invoke
+ * @param event the current event to propagate
+ * @since 4.1
+ */
+protected void invokeListener(ApplicationListener&lt;?&gt; listener, ApplicationEvent event) {
+	...
+	doInvokeListener(listener, event);
+	...
+}
+
+@SuppressWarnings({"rawtypes", "unchecked"})
+private void doInvokeListener(ApplicationListener listener, ApplicationEvent event) {
+	...
+	listener.onApplicationEvent(event);
+	...
+}</code></pre>
+</li>
+<li>org.springframework.cloud.bootstrap.BootstrapApplicationListener
+<pre class="language-java"><code>@Override
+public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
+   ...
+}</code></pre>
+</li>
+</ol>
+<p>以上是SpringBoot启动时加载Spring自身相关Environment的主要流程,之后通过<span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">ApplicationEnvironmentPreparedEvent事件监听器加载所有的</span></p>
+<div>
+<div>
+<div>ApplicationContextInitializer来保存Environment.接下来就可以对Environment进行扩展/调整/覆盖等一系列操作.</div>
+</div>
+</div>
+<ol style="list-style-type: lower-roman;">
+<li>org.springframework.cloud.bootstrap.BootstrapImportSelectorConfiguration</li>
+<li>org.springframework.cloud.bootstrap.BootstrapImportSelector</li>
+<li>org.springframework.cloud.bootstrap.BootstrapConfiguration
+<ol style="list-style-type: lower-alpha;">
+<li>spring-cloud-context.jar/META-INF/spring.factories  PropertySourceBootstrapConfiguration</li>
+<li>spring-cloud-starter-alibaba-nacos-config.jar/META-INF/spring.factories -&gt; NacosConfigBootstrapConfiguration -&gt; NacosPropertySourceLocator</li>
+</ol>
+</li>
+<li>org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration<br>会加载所有PropertySourceLocator并执行locateCollection方法,进而执行locate方法.当然就包括下边的NacosPropertySourceLocator</li>
+<li>com.alibaba.cloud.nacos.client.NacosPropertySourceLocator<br>主要依赖com.alibaba.cloud.nacos.NacosConfigManager中的com.alibaba.nacos.api.config.ConfigService构造出com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder</li>
+<li>com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder
+<pre class="language-java"><code>/*
+ * Copyright 2013-2018 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.alibaba.cloud.nacos.client;
+
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import com.alibaba.cloud.nacos.NacosPropertySourceRepository;
+import com.alibaba.cloud.nacos.parser.NacosDataParserHandler;
+import com.alibaba.nacos.api.config.ConfigService;
+import com.alibaba.nacos.api.exception.NacosException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.core.env.PropertySource;
+import org.springframework.util.StringUtils;
+
+/**
+ * @author xiaojing
+ * @author pbting
+ */
+public class NacosPropertySourceBuilder {
+
+	private static final Logger log = LoggerFactory
+			.getLogger(NacosPropertySourceBuilder.class);
+
+	private ConfigService configService;
+
+	private long timeout;
+
+	public NacosPropertySourceBuilder(ConfigService configService, long timeout) {
+		this.configService = configService;
+		this.timeout = timeout;
+	}
+
+	public long getTimeout() {
+		return timeout;
+	}
+
+	public void setTimeout(long timeout) {
+		this.timeout = timeout;
+	}
+
+	public ConfigService getConfigService() {
+		return configService;
+	}
+
+	public void setConfigService(ConfigService configService) {
+		this.configService = configService;
+	}
+
+	/**
+	 * @param dataId Nacos dataId
+	 * @param group Nacos group
+	 */
+	NacosPropertySource build(String dataId, String group, String fileExtension,
+			boolean isRefreshable) {
+		List&lt;PropertySource&lt;?&gt;&gt; propertySources = loadNacosData(dataId, group,
+				fileExtension);
+		NacosPropertySource nacosPropertySource = new NacosPropertySource(propertySources,
+				group, dataId, new Date(), isRefreshable);
+		NacosPropertySourceRepository.collectNacosPropertySource(nacosPropertySource);
+		return nacosPropertySource;
+	}
+
+	private List&lt;PropertySource&lt;?&gt;&gt; loadNacosData(String dataId, String group,
+			String fileExtension) {
+		String data = null;
+		try {
+			data = configService.getConfig(dataId, group, timeout);
+			if (StringUtils.isEmpty(data)) {
+				log.warn(
+						"Ignore the empty nacos configuration and get it based on dataId[{}] &amp; group[{}]",
+						dataId, group);
+				return Collections.emptyList();
+			}
+			if (log.isDebugEnabled()) {
+				log.debug(String.format(
+						"Loading nacos data, dataId: '%s', group: '%s', data: %s", dataId,
+						group, data));
+			}
+			return NacosDataParserHandler.getInstance().parseNacosData(dataId, data,
+					fileExtension);
+		}
+		catch (NacosException e) {
+			log.error("get data from Nacos error,dataId:{} ", dataId, e);
+		}
+		catch (Exception e) {
+			log.error("parse data from Nacos error,dataId:{},data:{}", dataId, data, e);
+		}
+		return Collections.emptyList();
+	}
+
+}
+</code></pre>
+</li>
+</ol>
+<p> </p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>jj</title>
         <author>
@@ -640,31 +860,6 @@ select * from pg_get_tabledef('schema.tablename');</code></pre>
 
 }</code></pre>
 <p><strong>降序对</strong>:在一个数组中,一个数与右边每个比它小的数组成一个降序对,求数组的所有降序对.(<strong>注意</strong>:由于要统计右侧数据,所以在merge左右区间时,如果遇到相等的数,要先处理左区间的)</p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>Master公式</title>
-        <author>
-            <name>lhplj</name>
-        </author>
-        <link href="https://lhplj.github.io/mastergong-shi.html"/>
-        <id>https://lhplj.github.io/mastergong-shi.html</id>
-
-        <updated>2024-05-16T13:17:22+08:00</updated>
-            <summary>
-                <![CDATA[
-                    形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度 如果log(b,a) &lt; d 复杂度为 O(N^d) 如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a)) 如果log(b,a) = d 复杂度为 O(N^d * logN)
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度</p>
-<ol>
-<li>如果log(b,a) &lt; d 复杂度为 O(N^d)</li>
-<li>如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a))</li>
-<li>如果log(b,a) = d 复杂度为 O(N^d * logN)</li>
-</ol>
             ]]>
         </content>
     </entry>
