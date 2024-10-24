@@ -230,69 +230,6 @@ public class NacosPropertySourceBuilder {
         </content>
     </entry>
     <entry>
-        <title>jj</title>
-        <author>
-            <name>lhplj</name>
-        </author>
-        <link href="https://lhplj.github.io/jj.html"/>
-        <id>https://lhplj.github.io/jj.html</id>
-
-        <updated>2024-09-14T15:25:28+08:00</updated>
-            <summary>
-                <![CDATA[
-                    var chartDom = document.getElementById('main'); var myChart = echarts.init(chartDom); var option; option = { title: { text: 'LJ' }, tooltip: { trigger: 'axis' }, xAxis: { type: 'category', data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }, yAxis: { type: 'value'&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
-</p>
-<!-- 为 ECharts 准备一个定义了宽高的 DOM -->
-<div id="main" style="width: 600px; height: 400px;"></div>
-<p>
-<script type="text/javascript">
-    var chartDom = document.getElementById('main');
-    var myChart = echarts.init(chartDom);
-    var option;
-
-    option = {
-      title: {
-        text: 'LJ'
-      },
-      tooltip: {
-        trigger: 'axis'
-      },
-      xAxis: {
-        type: 'category',
-        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-      },
-      yAxis: {
-        type: 'value'
-      },
-      series: [
-        {
-          name: '24-1',
-          data: [7, 5, 7, 6, 9, 7, 8, 8, 9, 0, 0, 0],
-          type: 'line',
-          smooth: true
-        },
-        {
-          name: '24-2',
-          data: [14, 12, 14, 13, 16, 14, 15, 15, 18, 0, 0, 0],
-          type: 'line',
-          smooth: true
-        }
-      ]
-    };
-
-    option && myChart.setOption(option);
-  </script>
-</p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
         <title>Java-Case0</title>
         <author>
             <name>lhplj</name>
@@ -860,6 +797,31 @@ select * from pg_get_tabledef('schema.tablename');</code></pre>
 
 }</code></pre>
 <p><strong>降序对</strong>:在一个数组中,一个数与右边每个比它小的数组成一个降序对,求数组的所有降序对.(<strong>注意</strong>:由于要统计右侧数据,所以在merge左右区间时,如果遇到相等的数,要先处理左区间的)</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>Master公式</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/mastergong-shi.html"/>
+        <id>https://lhplj.github.io/mastergong-shi.html</id>
+
+        <updated>2024-05-16T13:17:22+08:00</updated>
+            <summary>
+                <![CDATA[
+                    形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度 如果log(b,a) &lt; d 复杂度为 O(N^d) 如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a)) 如果log(b,a) = d 复杂度为 O(N^d * logN)
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度</p>
+<ol>
+<li>如果log(b,a) &lt; d 复杂度为 O(N^d)</li>
+<li>如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a))</li>
+<li>如果log(b,a) = d 复杂度为 O(N^d * logN)</li>
+</ol>
             ]]>
         </content>
     </entry>

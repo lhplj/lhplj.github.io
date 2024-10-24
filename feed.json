@@ -24,20 +24,6 @@
             "date_modified": "2024-10-24T09:39:24+08:00"
         },
         {
-            "id": "https://lhplj.github.io/jj.html",
-            "url": "https://lhplj.github.io/jj.html",
-            "title": "jj",
-            "summary": "var chartDom = document.getElementById('main'); var myChart = echarts.init(chartDom); var option; option = { title: { text: 'LJ' }, tooltip: { trigger: 'axis' }, xAxis: { type: 'category', data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }, yAxis: { type: 'value'&hellip;",
-            "content_html": "<p>\n<script src=\"https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js\"></script>\n</p>\n<!-- 为 ECharts 准备一个定义了宽高的 DOM -->\n<div id=\"main\" style=\"width: 600px; height: 400px;\"></div>\n<p>\n<script type=\"text/javascript\">\n    var chartDom = document.getElementById('main');\n    var myChart = echarts.init(chartDom);\n    var option;\n\n    option = {\n      title: {\n        text: 'LJ'\n      },\n      tooltip: {\n        trigger: 'axis'\n      },\n      xAxis: {\n        type: 'category',\n        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]\n      },\n      yAxis: {\n        type: 'value'\n      },\n      series: [\n        {\n          name: '24-1',\n          data: [7, 5, 7, 6, 9, 7, 8, 8, 9, 0, 0, 0],\n          type: 'line',\n          smooth: true\n        },\n        {\n          name: '24-2',\n          data: [14, 12, 14, 13, 16, 14, 15, 15, 18, 0, 0, 0],\n          type: 'line',\n          smooth: true\n        }\n      ]\n    };\n\n    option && myChart.setOption(option);\n  </script>\n</p>",
-            "author": {
-                "name": "lhplj"
-            },
-            "tags": [
-            ],
-            "date_published": "2024-09-14T15:25:28+08:00",
-            "date_modified": "2024-09-18T09:11:46+08:00"
-        },
-        {
             "id": "https://lhplj.github.io/java.html",
             "url": "https://lhplj.github.io/java.html",
             "title": "Java-Case0",
@@ -148,6 +134,20 @@
             ],
             "date_published": "2024-05-17T16:20:19+08:00",
             "date_modified": "2024-05-17T16:59:41+08:00"
+        },
+        {
+            "id": "https://lhplj.github.io/mastergong-shi.html",
+            "url": "https://lhplj.github.io/mastergong-shi.html",
+            "title": "Master公式",
+            "summary": "形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度 如果log(b,a) &lt; d 复杂度为 O(N^d) 如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a)) 如果log(b,a) = d 复杂度为 O(N^d * logN)",
+            "content_html": "<p>形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度</p>\n<ol>\n<li>如果log(b,a) &lt; d 复杂度为 O(N^d)</li>\n<li>如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a))</li>\n<li>如果log(b,a) = d 复杂度为 O(N^d * logN)</li>\n</ol>",
+            "author": {
+                "name": "lhplj"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-05-16T13:17:22+08:00",
+            "date_modified": "2024-05-16T13:17:39+08:00"
         }
     ]
 }
