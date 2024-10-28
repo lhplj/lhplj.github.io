@@ -56,14 +56,14 @@
             "url": "https://lhplj.github.io/top.html",
             "title": "linux常用命令",
             "summary": "top 显示 swap 执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小 top -o &lt;列名&gt; # 按SWSP排序 top -o SWAP # 按CPU使用率排序 top -o %CPU lsof # lsof -i:端口号 查询端口号是否被占用 lsof -i:26379 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME redis-ser 24071 root 6u IPv4 125225 0t0 TCP *:26379 (LISTEN) pwdx #&hellip;",
-            "content_html": "<h1>top</h1>\n<h2>显示 swap </h2>\n<p>执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小</p>\n<h2>排序</h2>\n<pre class=\"language-bash\"><code>top -o &lt;列名&gt;\n# 按SWSP排序\ntop -o SWAP\n# 按CPU使用率排序\ntop -o %CPU</code></pre>\n<h1>lsof</h1>\n<pre class=\"language-bash\"><code># lsof -i:端口号 查询端口号是否被占用\nlsof -i:26379\nCOMMAND      PID USER   FD   TYPE    DEVICE SIZE/OFF NODE NAME\nredis-ser  24071 root    6u  IPv4    125225      0t0  TCP *:26379 (LISTEN)\n</code></pre>\n<h1>pwdx</h1>\n<pre class=\"language-bash\"><code># pwdx pid 查看进程启动时的工作目录\npwdx 24071\n24071: /home/devops/install/redis-cluster/redis_26379</code></pre>",
+            "content_html": "<h1>top</h1>\n<h2>显示 swap </h2>\n<p>执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小</p>\n<h2>排序</h2>\n<pre class=\"language-bash\"><code>top -o &lt;列名&gt;\n# 按SWSP排序\ntop -o SWAP\n# 按CPU使用率排序\ntop -o %CPU</code></pre>\n<h1>lsof</h1>\n<pre class=\"language-bash\"><code># lsof -i:端口号 查询端口号是否被占用\nlsof -i:26379\nCOMMAND      PID USER   FD   TYPE    DEVICE SIZE/OFF NODE NAME\nredis-ser  24071 root    6u  IPv4    125225      0t0  TCP *:26379 (LISTEN)\n</code></pre>\n<h1>pwdx</h1>\n<pre class=\"language-bash\"><code># pwdx pid 查看进程启动时的工作目录\npwdx 24071\n24071: /home/devops/install/redis-cluster/redis_26379</code></pre>\n<h1>ps</h1>\n<pre class=\"language-bash\"><code># 查看进程的运行时间\n# 例如 10-01:23:45 表示进程已运行了 10 天、1 小时、23 分钟和 45 秒。\nps -p &lt;PID&gt; -o etime</code></pre>",
             "author": {
                 "name": "lhplj"
             },
             "tags": [
             ],
             "date_published": "2024-08-27T10:36:20+08:00",
-            "date_modified": "2024-10-16T10:04:49+08:00"
+            "date_modified": "2024-10-28T09:39:09+08:00"
         },
         {
             "id": "https://lhplj.github.io/gaussdb.html",

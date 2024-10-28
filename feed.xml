@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-10-24T09:39:24+08:00</updated>
+    <updated>2024-10-28T09:39:09+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -449,6 +449,10 @@ redis-ser  24071 root    6u  IPv4    125225      0t0  TCP *:26379 (LISTEN)
 <pre class="language-bash"><code># pwdx pid 查看进程启动时的工作目录
 pwdx 24071
 24071: /home/devops/install/redis-cluster/redis_26379</code></pre>
+<h1>ps</h1>
+<pre class="language-bash"><code># 查看进程的运行时间
+# 例如 10-01:23:45 表示进程已运行了 10 天、1 小时、23 分钟和 45 秒。
+ps -p &lt;PID&gt; -o etime</code></pre>
             ]]>
         </content>
     </entry>
