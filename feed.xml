@@ -3,14 +3,234 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-09-02T09:24:55+08:00</updated>
+    <updated>2024-10-28T09:39:09+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
     <entry>
-        <title>Java-Case1</title>
+        <title>Spring+Nacos加载配置流程</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/springnacosjia-zai-pei-zhi-liu-cheng.html"/>
+        <id>https://lhplj.github.io/springnacosjia-zai-pei-zhi-liu-cheng.html</id>
+
+        <updated>2024-10-24T08:54:29+08:00</updated>
+            <summary>
+                <![CDATA[
+                    org.springframework.boot.SpringApplication public ConfigurableApplicationContext run(String... args) { ... ConfigurableEnvironment environment = prepareEnvironment(listeners, applicationArguments); ... } private ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners listeners, ApplicationArguments applicationArguments) { ... listeners.environmentPrepared(environment); .. } org.springframework.boot.SpringApplicationRunListeners void environmentPrepared(ConfigurableEnvironment environment) { for (SpringApplicationRunListener listener : this.listeners) { listener.environmentPrepared(environment); } } org.springframework.boot.SpringApplicationRunListener default void environmentPrepared(ConfigurableEnvironment environment) {}&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <ol>
+<li>org.springframework.boot.SpringApplication
+<pre class="language-java"><code>public ConfigurableApplicationContext run(String... args) {
+    ...
+    ConfigurableEnvironment environment = prepareEnvironment(listeners, applicationArguments);
+    ...
+}
+
+private ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners listeners,
+        ApplicationArguments applicationArguments) {
+    ...
+    listeners.environmentPrepared(environment);
+    ..
+}</code></pre>
+</li>
+<li>org.springframework.boot.SpringApplicationRunListeners
+<pre class="language-java"><code>void environmentPrepared(ConfigurableEnvironment environment) {
+    for (SpringApplicationRunListener listener : this.listeners) {
+        listener.environmentPrepared(environment);
+    }
+}</code></pre>
+</li>
+<li>org.springframework.boot.SpringApplicationRunListener
+<pre class="language-java"><code>default void environmentPrepared(ConfigurableEnvironment environment) {}</code></pre>
+</li>
+<li>org.springframework.boot.context.event.EventPublishingRunListener
+<pre class="language-java"><code>@Override
+public void environmentPrepared(ConfigurableEnvironment environment) {
+    this.initialMulticaster.multicastEvent(new ApplicationEnvironmentPreparedEvent(this.application, this.args, environment));
+}</code></pre>
+</li>
+<li>org.springframework.context.event.SimpleApplicationEventMulticaster
+<pre class="language-java"><code>@Override
+public void multicastEvent(ApplicationEvent event) {
+	multicastEvent(event, resolveDefaultEventType(event));
+}
+
+@Override
+public void multicastEvent(final ApplicationEvent event, @Nullable ResolvableType eventType) {
+	...
+	invokeListener(listener, event);
+	...
+}
+
+/**
+ * Invoke the given listener with the given event.
+ * @param listener the ApplicationListener to invoke
+ * @param event the current event to propagate
+ * @since 4.1
+ */
+protected void invokeListener(ApplicationListener&lt;?&gt; listener, ApplicationEvent event) {
+	...
+	doInvokeListener(listener, event);
+	...
+}
+
+@SuppressWarnings({"rawtypes", "unchecked"})
+private void doInvokeListener(ApplicationListener listener, ApplicationEvent event) {
+	...
+	listener.onApplicationEvent(event);
+	...
+}</code></pre>
+</li>
+<li>org.springframework.cloud.bootstrap.BootstrapApplicationListener
+<pre class="language-java"><code>@Override
+public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
+   ...
+}</code></pre>
+</li>
+</ol>
+<p>以上是SpringBoot启动时加载Spring自身相关Environment的主要流程,之后通过<span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">ApplicationEnvironmentPreparedEvent事件监听器加载所有的</span></p>
+<div>
+<div>
+<div>ApplicationContextInitializer来保存Environment.接下来就可以对Environment进行扩展/调整/覆盖等一系列操作.</div>
+</div>
+</div>
+<ol style="list-style-type: lower-roman;">
+<li>org.springframework.cloud.bootstrap.BootstrapImportSelectorConfiguration</li>
+<li>org.springframework.cloud.bootstrap.BootstrapImportSelector</li>
+<li>org.springframework.cloud.bootstrap.BootstrapConfiguration
+<ol style="list-style-type: lower-alpha;">
+<li>spring-cloud-context.jar/META-INF/spring.factories  PropertySourceBootstrapConfiguration</li>
+<li>spring-cloud-starter-alibaba-nacos-config.jar/META-INF/spring.factories -&gt; NacosConfigBootstrapConfiguration -&gt; NacosPropertySourceLocator</li>
+</ol>
+</li>
+<li>org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration<br>会加载所有PropertySourceLocator并执行locateCollection方法,进而执行locate方法.当然就包括下边的NacosPropertySourceLocator</li>
+<li>com.alibaba.cloud.nacos.client.NacosPropertySourceLocator<br>主要依赖com.alibaba.cloud.nacos.NacosConfigManager中的com.alibaba.nacos.api.config.ConfigService构造出com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder</li>
+<li>com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder
+<pre class="language-java"><code>/*
+ * Copyright 2013-2018 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.alibaba.cloud.nacos.client;
+
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import com.alibaba.cloud.nacos.NacosPropertySourceRepository;
+import com.alibaba.cloud.nacos.parser.NacosDataParserHandler;
+import com.alibaba.nacos.api.config.ConfigService;
+import com.alibaba.nacos.api.exception.NacosException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.core.env.PropertySource;
+import org.springframework.util.StringUtils;
+
+/**
+ * @author xiaojing
+ * @author pbting
+ */
+public class NacosPropertySourceBuilder {
+
+	private static final Logger log = LoggerFactory
+			.getLogger(NacosPropertySourceBuilder.class);
+
+	private ConfigService configService;
+
+	private long timeout;
+
+	public NacosPropertySourceBuilder(ConfigService configService, long timeout) {
+		this.configService = configService;
+		this.timeout = timeout;
+	}
+
+	public long getTimeout() {
+		return timeout;
+	}
+
+	public void setTimeout(long timeout) {
+		this.timeout = timeout;
+	}
+
+	public ConfigService getConfigService() {
+		return configService;
+	}
+
+	public void setConfigService(ConfigService configService) {
+		this.configService = configService;
+	}
+
+	/**
+	 * @param dataId Nacos dataId
+	 * @param group Nacos group
+	 */
+	NacosPropertySource build(String dataId, String group, String fileExtension,
+			boolean isRefreshable) {
+		List&lt;PropertySource&lt;?&gt;&gt; propertySources = loadNacosData(dataId, group,
+				fileExtension);
+		NacosPropertySource nacosPropertySource = new NacosPropertySource(propertySources,
+				group, dataId, new Date(), isRefreshable);
+		NacosPropertySourceRepository.collectNacosPropertySource(nacosPropertySource);
+		return nacosPropertySource;
+	}
+
+	private List&lt;PropertySource&lt;?&gt;&gt; loadNacosData(String dataId, String group,
+			String fileExtension) {
+		String data = null;
+		try {
+			data = configService.getConfig(dataId, group, timeout);
+			if (StringUtils.isEmpty(data)) {
+				log.warn(
+						"Ignore the empty nacos configuration and get it based on dataId[{}] &amp; group[{}]",
+						dataId, group);
+				return Collections.emptyList();
+			}
+			if (log.isDebugEnabled()) {
+				log.debug(String.format(
+						"Loading nacos data, dataId: '%s', group: '%s', data: %s", dataId,
+						group, data));
+			}
+			return NacosDataParserHandler.getInstance().parseNacosData(dataId, data,
+					fileExtension);
+		}
+		catch (NacosException e) {
+			log.error("get data from Nacos error,dataId:{} ", dataId, e);
+		}
+		catch (Exception e) {
+			log.error("parse data from Nacos error,dataId:{},data:{}", dataId, data, e);
+		}
+		return Collections.emptyList();
+	}
+
+}
+</code></pre>
+</li>
+</ol>
+<p> </p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>Java-Case0</title>
         <author>
             <name>lhplj</name>
         </author>
@@ -132,12 +352,13 @@ print Son.x = 40
 总结来说，将 -Xms 和 -Xmx 设置为相同的值可以帮助减少由于堆内存调整引起的性能问题，但并不能完全避免垃圾回收。GC 的发生仍然取决于应用程序的内存使用模式和所选择的垃圾回收算法。</li>
 </ol>
 <h3 id="gc参数">GC参数</h3>
-<pre><code>-XX:+PrintGCDetails：输出详细的 GC 信息。
--XX:+PrintGCDateStamps：在 GC 日志中添加时间戳。
--Xloggc:/path/to/gc.log：指定 GC 日志文件的路径。
--XX:+UseG1GC：使用 G1 垃圾回收器。
--XX:+UseParallelGC：使用并行垃圾回收器。
--XX:+UseConcMarkSweepGC：使用 CMS 垃圾回收器（注意，CMS 从 JDK 14 开始已被弃用）。
+<pre><code>-XX:+PrintGCDetails 输出详细的 GC 信息。
+-XX:+PrintGCDateStamps 在 GC 日志中添加时间戳。
+-XX:+UseGCLogFileRotation GC日志分割
+-Xloggc:/path/to/gc.log 指定 GC 日志文件的路径。
+-XX:+UseG1GC 使用 G1 垃圾回收器。
+-XX:+UseParallelGC 使用并行垃圾回收器。
+-XX:+UseConcMarkSweepGC 使用 CMS 垃圾回收器（注意，CMS 从 JDK 14 开始已被弃用）。
 </code></pre>
 <h4 id="full-gc">Full GC</h4>
 <p>Full GC是指对整个堆内存（包括新生代和老年代）以及元空间进行垃圾回收的过程。Full GC通常比Minor GC（只针对新生代进行垃圾回收）要耗时更长，并且会导致所有用户线程暂停（Stop The World），因此应该尽量避免或减少Full GC的发生。
@@ -194,7 +415,7 @@ jmap -heap 63936
         </content>
     </entry>
     <entry>
-        <title>top</title>
+        <title>linux常用命令</title>
         <author>
             <name>lhplj</name>
         </author>
@@ -204,19 +425,34 @@ jmap -heap 63936
         <updated>2024-08-27T10:36:20+08:00</updated>
             <summary>
                 <![CDATA[
-                    显示 swap 执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小 top -o &lt;列名&gt; # 按SWSP排序 top -o SWAP # 按CPU使用率排序 top -o %CPU
+                    top 显示 swap 执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小 top -o &lt;列名&gt; # 按SWSP排序 top -o SWAP # 按CPU使用率排序 top -o %CPU lsof # lsof -i:端口号 查询端口号是否被占用 lsof -i:26379 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME redis-ser 24071 root 6u IPv4 125225 0t0 TCP *:26379 (LISTEN) pwdx #&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <h1>显示 swap </h1>
+                <h1>top</h1>
+<h2>显示 swap </h2>
 <p>执行top命令后,按f键会显示top列的编辑界面,上下键移动光标到SWAP项,空格选中后,ESC返回后即可在最后一列看到各进程占用的swap内存大小</p>
-<h1>排序</h1>
+<h2>排序</h2>
 <pre class="language-bash"><code>top -o &lt;列名&gt;
 # 按SWSP排序
 top -o SWAP
 # 按CPU使用率排序
 top -o %CPU</code></pre>
+<h1>lsof</h1>
+<pre class="language-bash"><code># lsof -i:端口号 查询端口号是否被占用
+lsof -i:26379
+COMMAND      PID USER   FD   TYPE    DEVICE SIZE/OFF NODE NAME
+redis-ser  24071 root    6u  IPv4    125225      0t0  TCP *:26379 (LISTEN)
+</code></pre>
+<h1>pwdx</h1>
+<pre class="language-bash"><code># pwdx pid 查看进程启动时的工作目录
+pwdx 24071
+24071: /home/devops/install/redis-cluster/redis_26379</code></pre>
+<h1>ps</h1>
+<pre class="language-bash"><code># 查看进程的运行时间
+# 例如 10-01:23:45 表示进程已运行了 10 天、1 小时、23 分钟和 45 秒。
+ps -p &lt;PID&gt; -o etime</code></pre>
             ]]>
         </content>
     </entry>
@@ -589,74 +825,6 @@ select * from pg_get_tabledef('schema.tablename');</code></pre>
 <li>如果log(b,a) &lt; d 复杂度为 O(N^d)</li>
 <li>如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a))</li>
 <li>如果log(b,a) = d 复杂度为 O(N^d * logN)</li>
-</ol>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>求整数二进制位最右(低)1的位置</title>
-        <author>
-            <name>lhplj</name>
-        </author>
-        <link href="https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html"/>
-        <id>https://lhplj.github.io/qiu-zheng-shu-er-jin-zhi-wei-zui-youdi1de-wei-zhi.html</id>
-
-        <updated>2024-05-15T14:59:17+08:00</updated>
-            <summary>
-                <![CDATA[
-                    # 对于任意整数N,求N的二进制位最右1的位置 int pos = N &amp; ((~N) + 1); # 注意上述得到的结果是保留最右1,其余位为0后对应的10进制整数,不是从右向左的序号(从0开始) # 如12的二进制为 0000 1100 # 取反后为 1111 0011 # 取反加1后为 1111 0100 # 与原数&amp;后为 0000 0100 # 对应的10进制整数为 4 # 如果要得到从右向左的序号(从0开始),可以使用以下两种方法 # 方法1 Integer.toBinaryString(n &amp; ~n + 1).length() - 1; # 方法2 (取2的对数)&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <pre class="language-java"><code># 对于任意整数N,求N的二进制位最右1的位置
-int pos = N &amp; ((~N) + 1);
-# 注意上述得到的结果是保留最右1,其余位为0后对应的10进制整数,不是从右向左的序号(从0开始)
-# 如12的二进制为 0000 1100
-# 取反后为           1111 0011
-# 取反加1后为      1111 0100
-# 与原数&amp;后为      0000 0100
-# 对应的10进制整数为 4
-# 如果要得到从右向左的序号(从0开始),可以使用以下两种方法
-# 方法1
-Integer.toBinaryString(n &amp; ~n + 1).length() - 1;
-# 方法2 (取2的对数)
-Math.log(n &amp; ~n + 1) / Math.log(2);
-# JDK 中只有 自然对数(以e为底)Math.log(double) 及 常用对数(以10为底)Math.log10(double) 的计算方法
-# 其它的可以使用公式 log(a)(b) = ln(b)/ln(a) 或 log(a)(b) = log(10)(b)/log(10)(a)</code></pre>
-<p>对原数先取反再加1,最后再与原数进行与操作即可</p>
-<p>使用场景</p>
-<ol>
-<li>求整数N二进制中1的数量
-<pre class="language-java"><code>int count = 0;
-int rightOne = -1;
-while (N != 0) {
-    # 找最后边为1的位置
-    rightOne = N &amp; ((~N) + 1);
-    count++;
-    # 将N中最后边的1消掉
-    N ^= rightOne;
-}</code></pre>
-</li>
-<li>一个数组中有两种数是奇数个,找出这两种数
-<pre class="language-java"><code># 假设数组 arr 中的这两种数为 a 和 b
-int eor = 0;
-for (int i = 0; i &lt; arr.length; i++) {
-    eor ^= arr[i];
-}
-# 此时 eor = a ^ b
-# 因为 a != b 则 eor != 0 则必有二进制位有1
-int rigthOne = eor &amp; ((~eor) + 1);
-# 则对于 a 和 b 必有一个rigthOne 位置为1一个为 0
-# 则必有 rightOne ^ a 和 rightOne ^ b 一个为1一个为0(可通过此方法将a与b分开)
-int a = 0;
-for (int i = 0; i &lt; arr.length; i++) {
-    if (arr[i] &amp; rightOne != 0) {
-        a ^= arr[i];
-    }
-}
-int b = eor ^ a;</code></pre>
-</li>
 </ol>
             ]]>
         </content>
