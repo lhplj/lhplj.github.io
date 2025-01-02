@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2024-10-28T09:39:09+08:00</updated>
+    <updated>2025-01-02T15:22:36+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -453,6 +453,16 @@ pwdx 24071
 <pre class="language-bash"><code># 查看进程的运行时间
 # 例如 10-01:23:45 表示进程已运行了 10 天、1 小时、23 分钟和 45 秒。
 ps -p &lt;PID&gt; -o etime</code></pre>
+<h1>zip</h1>
+<pre class="language-bash"><code># name 为生成的压缩包的名称
+# q 静默
+# r 递归子目录
+zip -qr name.zip ./*
+
+# 对于jar包解压后再压缩，要增加选项0，否则会对依赖jar进行压缩，这样java将无法正常解析
+# 0 只存储不压缩
+zip -qr0 name.zip ./*</code></pre>
+<p> </p>
             ]]>
         </content>
     </entry>
