@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-02-07T16:36:20+08:00</updated>
+    <updated>2025-02-07T16:43:07+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -492,7 +492,8 @@ jmap -heap 63936
 <li>实例数据</li>
 <li>对齐填充（保证8个字节的倍数）</li>
 </ul>
-<figure class="post__image"><img loading="lazy" src="https://lhplj.github.io/media/posts/11/java-object-mark-word-2.png" alt="Mark Word" width="2234" height="700"  sizes="100vw" srcset="https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-xs.png 300w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-sm.png 480w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-md.png 768w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-lg.png 1024w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-xl.png 1360w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-2xl.png 1600w"></figure>
+<figure class="post__image"><img loading="lazy" src="https://lhplj.github.io/media/posts/11/java-object-mark-word-2.png" alt="Mark Word" width="2234" height="700"  sizes="100vw" srcset="https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-xs.png 300w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-sm.png 480w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-md.png 768w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-lg.png 1024w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-xl.png 1360w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-2xl.png 1600w"></figure><h3 id="jol">JOL</h3>
+<p>org.openjdk.jol 可以用于分析Java对象结构</p>
             ]]>
         </content>
     </entry>
