@@ -10,6 +10,20 @@
     },
     "items": [
         {
+            "id": "https://lhplj.github.io/javayin-yong.html",
+            "url": "https://lhplj.github.io/javayin-yong.html",
+            "title": "Java引用",
+            "summary": "强引用（默认支持模式java.lang.ref.Reference&lt;T&gt;） 软引用（java.lang.ref.SoftReference&lt;T&gt;） 弱引用（java.lang.ref.WeakReference&lt;T&gt;） 虚引用（java.lang.ref.PhantomReference&lt;T&gt;） Object.finalize() 当GC认为可以回收某对象时，GC会调用对象的此方法 当内存不足JVM开始垃圾回收，对于强引用对象，只要引用计数大于0就不会回收该对象。 SomeObject so = new SomeObject(); # 通过构造方法软引用一个对象 SoftReference&lt;SomeObject&gt; sf = new SoftReference(so); # 通过get方法获取引用对象 # 在内存充足时可以正常获取到引用䭴 # 在内存不足时将获取null，so会被GC机制回收 SomeObject ref = sf.get(); 弱引用 比软引用的生存期更短，只要进行GC无论JVM内存是否充足，弱引用对象都会被清理 # ThreadLocal 中的静态类 ThreadLocalMap 中的 静态类 Entry 继承了弱引用 static class Entry extends WeakReference&lt;ThreadLocal&lt;?&gt;&gt; {&hellip;",
+            "content_html": "<ul>\n<li>强引用（默认支持模式java.lang.ref.Reference&lt;T&gt;）</li>\n<li>软引用（java.lang.ref.SoftReference&lt;T&gt;）</li>\n<li>弱引用（java.lang.ref.WeakReference&lt;T&gt;）</li>\n<li>虚引用（java.lang.ref.PhantomReference&lt;T&gt;）</li>\n</ul>\n<h2>Object.finalize()</h2>\n<p>当GC认为可以回收某对象时，GC会调用对象的此方法</p>\n<h2>强引用</h2>\n<p>当内存不足JVM开始垃圾回收，对于强引用对象，只要引用计数大于0就不会回收该对象。</p>\n<h2>软引用</h2>\n<ul>\n<li>当系统内存充足时软引用对象不会被回收</li>\n<li>当系统内存不足时软引用对象会被回收</li>\n</ul>\n<pre class=\"language-java\"><code>SomeObject so = new SomeObject();\n# 通过构造方法软引用一个对象\nSoftReference&lt;SomeObject&gt; sf = new SoftReference(so);\n# 通过get方法获取引用对象\n# 在内存充足时可以正常获取到引用䭴\n# 在内存不足时将获取null，so会被GC机制回收\nSomeObject ref = sf.get();</code></pre>\n<h2>弱引用</h2>\n<p>比软引用的生存期更短，只要进行GC无论JVM内存是否充足，弱引用对象都会被清理</p>\n<pre class=\"language-java\"><code># ThreadLocal 中的静态类 ThreadLocalMap 中的 静态类 Entry 继承了弱引用\nstatic class Entry extends WeakReference&lt;ThreadLocal&lt;?&gt;&gt; {\n    /** The value associated with this ThreadLocal. */\n    Object value;\n\n    Entry(ThreadLocal&lt;?&gt; k, Object v) {\n        super(k);\n        value = v;\n    }\n}</code></pre>\n<h3>ThreadLocal.ThreadLocalMap.Entry为什么要用弱引用</h3>\n<p>因为它在TheadLocal内部，本身引用的对象又是ThreadLocal，也就是说在内部引用自己，如果使用强引用，那ThreadLocal对象将永远无法被回收。</p>\n<p>由于是弱引用，所以ThreadLocal对象会在GC后被回收，引用它的变量将成为null，所以它的 set / get 方法会在内部判断引用对象是否为 null ，如果是，将会自动清理保存的数据，以释放内存。</p>\n<h2>虚引用</h2>\n<p>在任何时间都可能被回收</p>\n<ol>\n<li>虚引用必须与引用队列（java.lang.ref.ReferenceQueue&lt;T&gt;）联合使用。<span style=\"color: #e03e2d;\"><strong>虚引用对象被回收后，会被加入到 ReferenceQueue 中</strong></span></li>\n<li>虚引用的get方法总是返回null：虚引用的主要作用是跟踪对象被垃圾回收的状态。仅仅是提供了一种确保对象被 finalize 以后，做某些事情的通知机制。</li>\n<li>处理监控通知使用：换句话说，设置虚引用关联对象的唯一目的，就是在这个对象被收集器回收的时候收到一个系统通知或者后续添加进一步的处理，用来实现 比finalize 机制更灵活的回收操作。</li>\n</ol>",
+            "author": {
+                "name": "lhplj"
+            },
+            "tags": [
+            ],
+            "date_published": "2025-02-07T11:02:41+08:00",
+            "date_modified": "2025-02-07T14:37:52+08:00"
+        },
+        {
             "id": "https://lhplj.github.io/springnacosjia-zai-pei-zhi-liu-cheng.html",
             "url": "https://lhplj.github.io/springnacosjia-zai-pei-zhi-liu-cheng.html",
             "title": "Spring+Nacos加载配置流程",
@@ -134,20 +148,6 @@
             ],
             "date_published": "2024-05-17T16:20:19+08:00",
             "date_modified": "2024-05-17T16:59:41+08:00"
-        },
-        {
-            "id": "https://lhplj.github.io/mastergong-shi.html",
-            "url": "https://lhplj.github.io/mastergong-shi.html",
-            "title": "Master公式",
-            "summary": "形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度 如果log(b,a) &lt; d 复杂度为 O(N^d) 如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a)) 如果log(b,a) = d 复杂度为 O(N^d * logN)",
-            "content_html": "<p>形如T(N) = a * T(N/b) + O(N^d) 其中a/b/d都是常数的递归函数,可以直接通过Master公式来确定时间复杂度</p>\n<ol>\n<li>如果log(b,a) &lt; d 复杂度为 O(N^d)</li>\n<li>如果log(b,a) &gt; d 复杂度为 O(N^Log(b,a))</li>\n<li>如果log(b,a) = d 复杂度为 O(N^d * logN)</li>\n</ol>",
-            "author": {
-                "name": "lhplj"
-            },
-            "tags": [
-            ],
-            "date_published": "2024-05-16T13:17:22+08:00",
-            "date_modified": "2024-05-16T13:17:39+08:00"
         }
     ]
 }
