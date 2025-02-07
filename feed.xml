@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-02-07T14:37:52+08:00</updated>
+    <updated>2025-02-07T14:57:43+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -472,6 +472,17 @@ jmap -heap 63936
 </ul>
 </li>
 <li>标记覆盖<br>  老年代使用的算法.</li>
+</ul>
+<h3 id="对象在堆内存中的存储布局">对象在堆内存中的存储布局</h3>
+<ul>
+<li>对象头<ul>
+<li>Mark Word</li>
+<li>Class Pointer</li>
+<li>Length (数组特有，一般对象无）</li>
+</ul>
+</li>
+<li>实例数据</li>
+<li>对齐填充（保证8个字节的倍数）</li>
 </ul>
 
             ]]>
