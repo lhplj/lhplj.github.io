@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-02-07T14:57:43+08:00</updated>
+    <updated>2025-02-07T15:43:55+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -476,15 +476,22 @@ jmap -heap 63936
 <h3 id="对象在堆内存中的存储布局">对象在堆内存中的存储布局</h3>
 <ul>
 <li>对象头<ul>
-<li>Mark Word</li>
-<li>Class Pointer</li>
+<li>Mark Word（64位系统中占8字节）<ul>
+<li>hash code</li>
+<li>GC标记</li>
+<li>GC次数</li>
+<li>同步锁标记</li>
+<li>偏向锁持有者</li>
+</ul>
+</li>
+<li>Class Pointer（64位系统中占8字节）</li>
 <li>Length (数组特有，一般对象无）</li>
 </ul>
 </li>
 <li>实例数据</li>
 <li>对齐填充（保证8个字节的倍数）</li>
 </ul>
-
+<figure class="post__image"><img loading="lazy" src="https://lhplj.github.io/media/posts/11/java-object-mark-word-2.png" alt="Mark Word" width="2234" height="700"  sizes="100vw" srcset="https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-xs.png 300w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-sm.png 480w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-md.png 768w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-lg.png 1024w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-xl.png 1360w ,https://lhplj.github.io/media/posts/11/responsive/java-object-mark-word-2-2xl.png 1600w"></figure>
             ]]>
         </content>
     </entry>

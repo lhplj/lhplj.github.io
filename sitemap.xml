@@ -18,7 +18,11 @@
 </url>
 <url>
 <loc>https://lhplj.github.io/jvm.html</loc>
-<lastmod>2025-02-07T14:57:43+08:00</lastmod>
+<lastmod>2025-02-07T15:43:55+08:00</lastmod>
+<image:image>
+<image:loc>https://lhplj.github.io/media/posts/11/java-object-mark-word-2.png</image:loc>
+<image:title><![CDATA[Mark Word]]></image:title>
+</image:image>
 </url>
 <url>
 <loc>https://lhplj.github.io/logrorate.html</loc>
