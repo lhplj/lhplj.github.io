@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-02-07T17:27:37+08:00</updated>
+    <updated>2025-02-20T16:52:07+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -530,7 +530,7 @@ jmap -heap 63936
 <h3 id="对象在堆内存中的存储布局">对象在堆内存中的存储布局</h3>
 <ul>
 <li>对象头<ul>
-<li>Mark Word（64位系统中占8字节）<ul>
+<li>对象标记（Mark Word）（64位系统中占8字节）<ul>
 <li>hash code</li>
 <li>GC标记</li>
 <li>GC次数</li>
@@ -538,7 +538,7 @@ jmap -heap 63936
 <li>偏向锁持有者</li>
 </ul>
 </li>
-<li>Class Pointer（64位系统中占8字节）</li>
+<li>类型指针（Class Pointer）（64位系统中占8字节）</li>
 <li>Length (数组特有，一般对象无）</li>
 </ul>
 </li>
