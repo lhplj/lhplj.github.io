@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-02-20T16:52:07+08:00</updated>
+    <updated>2025-02-21T16:18:09+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -57,7 +57,7 @@
 <h1>升级过程</h1>
 <p>无锁 -&gt; 偏向锁 -&gt; 轻量级锁 -&gt; 重量级锁</p>
 <figure class="post__image post__image--center"><img loading="lazy"  src="https://lhplj.github.io/media/posts/17/java-object-mark-word-2.png" alt="" width="2904" height="1198" sizes="100vw" srcset="https://lhplj.github.io/media/posts/17/responsive/java-object-mark-word-2-xs.png 300w ,https://lhplj.github.io/media/posts/17/responsive/java-object-mark-word-2-sm.png 480w ,https://lhplj.github.io/media/posts/17/responsive/java-object-mark-word-2-md.png 768w ,https://lhplj.github.io/media/posts/17/responsive/java-object-mark-word-2-lg.png 1024w ,https://lhplj.github.io/media/posts/17/responsive/java-object-mark-word-2-xl.png 1360w ,https://lhplj.github.io/media/posts/17/responsive/java-object-mark-word-2-2xl.png 1600w"></figure>
-<figure class="post__image"><img loading="lazy"  src="https://lhplj.github.io/media/posts/17/java-synchronized-process.jpeg" alt="" width="2672" height="1168" sizes="100vw" srcset="https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-xs.jpeg 300w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-sm.jpeg 480w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-md.jpeg 768w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-lg.jpeg 1024w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-xl.jpeg 1360w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-2xl.jpeg 1600w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://lhplj.github.io/media/posts/17/java-synchronized-process-2-2.png" alt="" width="3485" height="1728" sizes="100vw" srcset="https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-2-2-xs.png 300w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-2-2-sm.png 480w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-2-2-md.png 768w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-2-2-lg.png 1024w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-2-2-xl.png 1360w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-process-2-2-2xl.png 1600w"></figure>
 <figure class="post__image"><img loading="lazy"  src="https://lhplj.github.io/media/posts/17/java-synchronized-lock-update.jpeg" alt="" width="640" height="1276" sizes="100vw" srcset="https://lhplj.github.io/media/posts/17/responsive/java-synchronized-lock-update-xs.jpeg 300w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-lock-update-sm.jpeg 480w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-lock-update-md.jpeg 768w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-lock-update-lg.jpeg 1024w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-lock-update-xl.jpeg 1360w ,https://lhplj.github.io/media/posts/17/responsive/java-synchronized-lock-update-2xl.jpeg 1600w"></figure>
             ]]>
         </content>
