@@ -3,12 +3,102 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-02-26T21:24:54+08:00</updated>
+    <updated>2025-03-19T14:49:26+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
     <id>https://lhplj.github.io</id>
 
+    <entry>
+        <title>Vosk</title>
+        <author>
+            <name>lhplj</name>
+        </author>
+        <link href="https://lhplj.github.io/vosk.html"/>
+        <id>https://lhplj.github.io/vosk.html</id>
+
+        <updated>2025-03-19T14:47:42+08:00</updated>
+            <summary>
+                <![CDATA[
+                    转载自 https://blog.csdn.net/My_wife_QBL/article/details/136344578 Vosk是离线语音识别工具包。 &lt;dependency&gt; &lt;groupId&gt;org&lt;/groupId&gt; &lt;artifactId&gt;jaudiotagger&lt;/artifactId&gt; &lt;version&gt;2.0.3&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;net.java.dev.jna&lt;/groupId&gt; &lt;artifactId&gt;jna&lt;/artifactId&gt; &lt;version&gt;5.7.0&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;com.alphacephei&lt;/groupId&gt; &lt;artifactId&gt;vosk&lt;/artifactId&gt; &lt;version&gt;0.3.32&lt;/version&gt; &lt;/dependency&gt; 代码示例 需要提前下载 https://alphacephei.com/vosk/models import java.io.File; import java.io.IOException; import java.io.InputStream; import javax.sound.sampled.AudioSystem; import javax.sound.sampled.UnsupportedAudioFileException; import org.openjdk.jol.info.ClassLayout; import org.vosk.LibVosk; import org.vosk.LogLevel; import org.vosk.Model; import org.vosk.Recognizer; public class Test {&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>转载自 <a href="https://blog.csdn.net/My_wife_QBL/article/details/136344578">https://blog.csdn.net/My_wife_QBL/article/details/136344578</a> </p>
+<p><a href="https://alphacephei.com/vosk/index.zh">Vosk</a>是<span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">离线语音识别工具包。</span></p>
+<div>
+<div>支持 WAV 格式的音频文件，建议使用 16kHz 单声道 PCM 编码的 WAV 文件。如果文件格式不同，可以考虑使用工具（如 <code>ffmpeg</code>）将其转换为兼容的格式。</div>
+<h2>依赖</h2>
+<div>
+<pre class="language-html"><code>&lt;dependency&gt;
+	&lt;groupId&gt;org&lt;/groupId&gt;
+	&lt;artifactId&gt;jaudiotagger&lt;/artifactId&gt;
+	&lt;version&gt;2.0.3&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;net.java.dev.jna&lt;/groupId&gt;
+	&lt;artifactId&gt;jna&lt;/artifactId&gt;
+	&lt;version&gt;5.7.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;com.alphacephei&lt;/groupId&gt;
+	&lt;artifactId&gt;vosk&lt;/artifactId&gt;
+	&lt;version&gt;0.3.32&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+<h2>代码示例</h2>
+<p>需要提前下载 <a href="https://alphacephei.com/vosk/models">https://alphacephei.com/vosk/models</a> </p>
+<div>
+<pre class="language-java"><code>import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import org.openjdk.jol.info.ClassLayout;
+import org.vosk.LibVosk;
+import org.vosk.LogLevel;
+import org.vosk.Model;
+import org.vosk.Recognizer;
+
+public class Test {
+
+    public static void main(String[] args) throws InterruptedException, IOException, UnsupportedAudioFileException {
+        LibVosk.setLogLevel(LogLevel.DEBUG);
+        // vosk model 路径
+        String voskModelPath = "/path/to/vosk-model-small-cn-0.22";
+        // 语音文件路径,必须是 wav 格式
+        File voiceFile = new File("/path/to/test.wav");
+        try (Model model = new Model(voskModelPath);
+                InputStream is = AudioSystem.getAudioInputStream(voiceFile);
+                Recognizer recognizer = new Recognizer(model, 16000.0f)) {
+            int len;
+            byte[] bytes = new byte[4096];
+            while ((len = is.read(bytes)) &gt;= 0) {
+                recognizer.acceptWaveForm(bytes, len);
+            }
+            // 语音转文字结果
+            System.out.println(recognizer.getFinalResult());
+        }
+    }
+}</code></pre>
+<h2>ffmpeg</h2>
+<pre class="language-bash"><code>ffmpeg -i input.m4a -ar 16000 -ac 1 -f wav output.wav</code></pre>
+<h3>解释：</h3>
+<ul>
+<li><code>-i input.m4a</code>：指定输入文件为 <code>input.m4a</code>（将其替换为你实际的文件名）。</li>
+<li><code>-ar 16000</code>：设置音频的采样率为 16kHz（16000 Hz）。</li>
+<li><code>-ac 1</code>：将音频转换为单声道（1 个声道）。</li>
+<li><code>-f wav</code>：指定输出格式为 <code>.wav</code>。</li>
+<li><code>output.wav</code>：指定输出的文件名为 <code>output.wav</code>（你可以修改为你想要的文件名）。</li>
+</ul>
+</div>
+</div>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>Java Synchronized 锁种类及升级</title>
         <author>
@@ -735,95 +825,6 @@ select * from pg_get_tabledef('schema.tablename');</code></pre>
 <p>\L 大写字母转小写</p>
 <p>\U 小写字母转大写</p>
 <p>$1 为正则匹配的第一项</p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>ReverseLinkedList</title>
-        <author>
-            <name>lhplj</name>
-        </author>
-        <link href="https://lhplj.github.io/reverselinkedlist.html"/>
-        <id>https://lhplj.github.io/reverselinkedlist.html</id>
-
-        <updated>2024-05-20T09:00:01+08:00</updated>
-            <summary>
-                <![CDATA[
-                    public class ReverseLinkedList { class Node&lt;T&gt; { private T value; private Node&lt;T&gt; next; } public static void main(String[] args) { ReverseLinkedList.Node&lt;Integer&gt; head = build(); print(head); print(reverse(head)); } private static Node&lt;Integer&gt; build() { ReverseLinkedList x = new ReverseLinkedList(); Node&lt;Integer&gt; head = x.new Node&lt;&gt;(); head.value = 0;&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <pre class="language-java"><code>public class ReverseLinkedList {
-
-    class Node&lt;T&gt; {
-        private T value;
-        private Node&lt;T&gt; next;
-    }
-
-    public static void main(String[] args) {
-        ReverseLinkedList.Node&lt;Integer&gt; head = build();
-        print(head);
-        print(reverse(head));
-    }
-
-    private static Node&lt;Integer&gt; build() {
-        ReverseLinkedList x = new ReverseLinkedList();
-        Node&lt;Integer&gt; head = x.new Node&lt;&gt;();
-        head.value = 0;
-        Node&lt;Integer&gt; cur = head;
-        for (int i = 1; i &lt; 10; i++) {
-            Node&lt;Integer&gt; next = x.new Node&lt;&gt;();
-            next.value = i;
-            cur.next = next;
-
-            cur = next;
-        }
-        return head;
-    }
-
-    /**
-     * 打印链表
-     * @param head
-     */
-    private static void print(Node&lt;Integer&gt; head) {
-        if (head == null) {
-            return;
-        }
-        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
-        list.add(head.value);
-        Node&lt;Integer&gt; next = head.next;
-        while (next != null) {
-            list.add(next.value);
-            next = next.next;
-        }
-        System.out.println(JSON.toJSONString(list));
-    }
-
-    /**
-     * 反转后返回新head
-     * @param head
-     * @return
-     */
-    private static Node&lt;Integer&gt; reverse(Node&lt;Integer&gt; head) {
-        Node&lt;Integer&gt; pre = null;
-        Node&lt;Integer&gt; node = head;
-        Node&lt;Integer&gt; next = head.next;
-        while (next != null) {
-            next = node.next;
-            node.next = pre;
-
-            pre = node;
-            if (next == null) {
-                break;
-            }
-            node = next;
-        }
-        return node;
-    }
-
-}
-</code></pre>
             ]]>
         </content>
     </entry>
