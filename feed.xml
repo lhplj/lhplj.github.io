@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-03-19T14:49:26+08:00</updated>
+    <updated>2025-04-02T15:17:30+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -722,6 +722,15 @@ grep -A 5
 grep -B 5
 # 显示匹配内容以及前后面的5行内容 
 grep -C 5</code></pre>
+<h1>vim</h1>
+<pre class="language-bash"><code># 显示行号
+:set nu
+# 不显示行号
+:set nonu
+# 搜索高亮显示
+:set hlsearch
+# 搜索不高亮显示
+:set nohlsearch</code></pre>
             ]]>
         </content>
     </entry>
