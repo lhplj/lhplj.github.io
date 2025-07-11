@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-04-02T15:17:30+08:00</updated>
+    <updated>2025-07-11T17:35:23+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -731,6 +731,22 @@ grep -C 5</code></pre>
 :set hlsearch
 # 搜索不高亮显示
 :set nohlsearch</code></pre>
+<h2>Service</h2>
+<pre class="language-bash"><code>vim /etc/systemd/system/nacos.service
+# 以下为文件内容，注意 Type 值：如果服务启动时命令不结束一直有输出，则需要用 simple ；如果服务启动时命令立即结束则用 forking
+[Unit]
+Description=My Nacos
+After=network.target
+ 
+[Service]
+Type=forking
+Environment="JAVA_HOME=/data/devops/install/jdk-11.0.23"
+Environment="PATH=/usr/local/openssl/bin:/data/devops/install/jdk-11.0.23/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/data/devops/install/rocketmq/bin:/root/bin:/usr/local/nginx/sbin"
+ExecStart=sh /data/devops/install/nacos/bin/start-nacos-standalone.sh
+ExecStop=sh /data/devops/install/nacos/bin/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target</code></pre>
             ]]>
         </content>
     </entry>
