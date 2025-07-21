@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-07-11T17:35:23+08:00</updated>
+    <updated>2025-07-21T09:53:41+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -547,7 +547,7 @@ print Son.x = 40
 -XX:TargetSurvivorRatio 设定survivor区的目标使用率。默认50，即survivor区对象目标使用率为50%。
 
 -XX:+HeapDumpOnOutOfMemoryError 内存溢出时输出堆内存文件
--XX:HeapDumpPath=/path/to/heap.hprof 堆内存文件路径
+-XX:HeapDumpPath=/path/to/heap.hprof 堆内存文件路径(可通过 $JAVA_HOME/bin/jvisualvm 分析hprof文件）
 -XX:PrintCommandLineFlags 输出JVM所有的参数
 </code></pre>
 <p>一般-XX:MetaspaceSize 和 -XX:MaxMetaspaceSize 设置一样的大小, -Xms 和 -Xmx 设置一样的大小，这意味着堆内存的大小在整个程序运行期间不会发生变化,
