@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-07-21T09:53:41+08:00</updated>
+    <updated>2025-08-05T15:44:41+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -821,6 +821,7 @@ select * from pg_get_tabledef('schema.tablename');</code></pre>
 # notifempy 忽略空日志文件的处理
 # compress 归档后进行压缩
 # sharedscripts postrorate endscript 通常一起出现
+# /bin/kill -USR1 pid 是给 pid 对应的nginx 进程发送 USR1 信号，nginx收到此信号后会：重开日志文件（关闭当前的日志文件描述符、重新打开配置文件中指定的日志文件路径）；不中断服务、释放旧文件
 
 
 # 强制进行一次切割与归档

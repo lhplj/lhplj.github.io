@@ -126,14 +126,14 @@
             "url": "https://lhplj.github.io/logrorate.html",
             "title": "logrorate",
             "summary": "linux自带的日志文件管理工具 # 主配置文件,通过 include /etc/logrorate.d 加载目录下的所有日志管理脚本 /etc/logrorate.conf # 日志管理脚本目录 /etc/logrorate.d/ # 以 nginx 日志切割与归档为例 # 以下为 /etc/logrorate.d/nginx 的内容 /home/devops/install/nginx/logs/*log { create 0664 root root daily dateext rotate 180 missingok notifempty compress sharedscripts postrotate /bin/kill -USR1 `cat /home/devops/install/nginx/logs/nginx.pid 2&gt;/dev/null` 2&gt;/dev/null || true endscript } # create&hellip;",
-            "content_html": "<p>linux自带的日志文件管理工具</p>\n<pre class=\"language-bash\"><code># 主配置文件,通过 include /etc/logrorate.d 加载目录下的所有日志管理脚本\n/etc/logrorate.conf\n# 日志管理脚本目录\n/etc/logrorate.d/\n\n# 以 nginx 日志切割与归档为例\n# 以下为 /etc/logrorate.d/nginx 的内容\n/home/devops/install/nginx/logs/*log {\n    create 0664 root root\n    daily\n    dateext\n    rotate 180\n    missingok\n    notifempty\n    compress\n    sharedscripts\n    postrotate\n        /bin/kill -USR1 `cat /home/devops/install/nginx/logs/nginx.pid 2&gt;/dev/null` 2&gt;/dev/null || true\n    endscript\n}\n\n# create 以指定权限创建新的日志文件\n# daily 处理频率 daily 每天 monthly 每月 weekly 每周 yearly 每年\n# dateext 使用日期格式作为命名格式\n# rorate 180 最多存储 180 个归档日志,超出后删除时间最久的\n# missingok 忽略错误\n# notifempy 忽略空日志文件的处理\n# compress 归档后进行压缩\n# sharedscripts postrorate endscript 通常一起出现\n\n\n# 强制进行一次切割与归档\n/usr/sbin/logrotate -f /etc/logratate.d/nginx</code></pre>",
+            "content_html": "<p>linux自带的日志文件管理工具</p>\n<pre class=\"language-bash\"><code># 主配置文件,通过 include /etc/logrorate.d 加载目录下的所有日志管理脚本\n/etc/logrorate.conf\n# 日志管理脚本目录\n/etc/logrorate.d/\n\n# 以 nginx 日志切割与归档为例\n# 以下为 /etc/logrorate.d/nginx 的内容\n/home/devops/install/nginx/logs/*log {\n    create 0664 root root\n    daily\n    dateext\n    rotate 180\n    missingok\n    notifempty\n    compress\n    sharedscripts\n    postrotate\n        /bin/kill -USR1 `cat /home/devops/install/nginx/logs/nginx.pid 2&gt;/dev/null` 2&gt;/dev/null || true\n    endscript\n}\n\n# create 以指定权限创建新的日志文件\n# daily 处理频率 daily 每天 monthly 每月 weekly 每周 yearly 每年\n# dateext 使用日期格式作为命名格式\n# rorate 180 最多存储 180 个归档日志,超出后删除时间最久的\n# missingok 忽略错误\n# notifempy 忽略空日志文件的处理\n# compress 归档后进行压缩\n# sharedscripts postrorate endscript 通常一起出现\n# /bin/kill -USR1 pid 是给 pid 对应的nginx 进程发送 USR1 信号，nginx收到此信号后会：重开日志文件（关闭当前的日志文件描述符、重新打开配置文件中指定的日志文件路径）；不中断服务、释放旧文件\n\n\n# 强制进行一次切割与归档\n/usr/sbin/logrotate -f /etc/logratate.d/nginx</code></pre>",
             "author": {
                 "name": "lhplj"
             },
             "tags": [
             ],
             "date_published": "2024-07-23T14:50:14+08:00",
-            "date_modified": "2024-07-26T10:30:31+08:00"
+            "date_modified": "2025-08-05T15:44:41+08:00"
         },
         {
             "id": "https://lhplj.github.io/vscodezheng-ze-ti-huan.html",
