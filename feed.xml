@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-08-05T15:44:41+08:00</updated>
+    <updated>2025-08-25T11:54:25+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -776,7 +776,7 @@ select * from pg_get_tabledef('schema.tablename');</code></pre>
         </content>
     </entry>
     <entry>
-        <title>logrorate</title>
+        <title>logrotate</title>
         <author>
             <name>lhplj</name>
         </author>
@@ -786,19 +786,19 @@ select * from pg_get_tabledef('schema.tablename');</code></pre>
         <updated>2024-07-23T14:50:14+08:00</updated>
             <summary>
                 <![CDATA[
-                    linux自带的日志文件管理工具 # 主配置文件,通过 include /etc/logrorate.d 加载目录下的所有日志管理脚本 /etc/logrorate.conf # 日志管理脚本目录 /etc/logrorate.d/ # 以 nginx 日志切割与归档为例 # 以下为 /etc/logrorate.d/nginx 的内容 /home/devops/install/nginx/logs/*log { create 0664 root root daily dateext rotate 180 missingok notifempty compress sharedscripts postrotate /bin/kill -USR1 `cat /home/devops/install/nginx/logs/nginx.pid 2&gt;/dev/null` 2&gt;/dev/null || true endscript } # create&hellip;
+                    linux自带的日志文件管理工具 # 主配置文件,通过 include /etc/logrotate.d 加载目录下的所有日志管理脚本 /etc/logrotate.conf # 日志管理脚本目录 /etc/logrotate.d/ # 以 nginx 日志切割与归档为例 # 以下为 /etc/logrotate.d/nginx 的内容 /home/devops/install/nginx/logs/*log { create 0664 root root daily dateext rotate 180 missingok notifempty compress sharedscripts postrotate /bin/kill -USR1 `cat /home/devops/install/nginx/logs/nginx.pid 2&gt;/dev/null` 2&gt;/dev/null || true endscript } # create&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p>linux自带的日志文件管理工具</p>
-<pre class="language-bash"><code># 主配置文件,通过 include /etc/logrorate.d 加载目录下的所有日志管理脚本
-/etc/logrorate.conf
+<pre class="language-bash"><code># 主配置文件,通过 include /etc/logrotate.d 加载目录下的所有日志管理脚本
+/etc/logrotate.conf
 # 日志管理脚本目录
-/etc/logrorate.d/
+/etc/logrotate.d/
 
 # 以 nginx 日志切割与归档为例
-# 以下为 /etc/logrorate.d/nginx 的内容
+# 以下为 /etc/logrotate.d/nginx 的内容
 /home/devops/install/nginx/logs/*log {
     create 0664 root root
     daily
