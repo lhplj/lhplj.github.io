@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-08-25T11:54:25+08:00</updated>
+    <updated>2025-08-28T13:47:21+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -825,7 +825,7 @@ select * from pg_get_tabledef('schema.tablename');</code></pre>
 
 
 # 强制进行一次切割与归档
-/usr/sbin/logrotate -f /etc/logratate.d/nginx</code></pre>
+/usr/sbin/logrotate -f /etc/logrotate.d/nginx</code></pre>
             ]]>
         </content>
     </entry>
