@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-08-28T13:47:21+08:00</updated>
+    <updated>2025-10-21T14:40:10+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -730,7 +730,11 @@ grep -C 5</code></pre>
 # 搜索高亮显示
 :set hlsearch
 # 搜索不高亮显示
-:set nohlsearch</code></pre>
+:set nohlsearch
+# 以 gbk 编码读取
+:e ++enc=gbk
+# 转换为utf-8
+:set fileencoding=utf-8</code></pre>
 <h2>Service</h2>
 <pre class="language-bash"><code>vim /etc/systemd/system/nacos.service
 # 以下为文件内容，注意 Type 值：如果服务启动时命令不结束一直有输出，则需要用 simple ；如果服务启动时命令立即结束则用 forking
