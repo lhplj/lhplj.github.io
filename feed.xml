@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2025-10-21T14:40:10+08:00</updated>
+    <updated>2026-05-09T14:30:53+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -751,6 +751,16 @@ ExecStop=sh /data/devops/install/nacos/bin/shutdown.sh
 
 [Install]
 WantedBy=multi-user.target</code></pre>
+<h2>command edit</h2>
+<pre class="language-bash"><code># Ctrl - A 移动光标到命令行开始
+# Ctrl - E 移动光标到命令行末尾
+# Ctrl - Left arrow 向左移动一个单词
+# Ctrl - Right arrow 向右移动一个单词
+# Ctrl - U 删除光标到开始的内容
+# Ctrl - K 删除光标到末尾的内容
+# Ctrl - Shift -C 复制选中的内容
+# Ctrl - Shift - V 粘贴</code></pre>
+<p> </p>
             ]]>
         </content>
     </entry>
