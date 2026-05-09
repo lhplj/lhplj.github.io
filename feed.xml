@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2026-05-09T14:30:53+08:00</updated>
+    <updated>2026-05-09T14:35:15+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -759,7 +759,10 @@ WantedBy=multi-user.target</code></pre>
 # Ctrl - U 删除光标到开始的内容
 # Ctrl - K 删除光标到末尾的内容
 # Ctrl - Shift -C 复制选中的内容
-# Ctrl - Shift - V 粘贴</code></pre>
+# Ctrl - Shift - V 粘贴
+# Ctrl - R 搜索历史命令
+# Up arrow 回到上一个命令
+# Down arrow 回到下一个命令</code></pre>
 <p> </p>
             ]]>
         </content>
