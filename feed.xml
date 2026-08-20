@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2026-08-20T14:45:04+08:00</updated>
+    <updated>2026-08-20T14:49:19+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -72,6 +72,7 @@ curl -X POST \
 100 19354  100 19244  100   110  26364    150 --:--:-- --:--:-- --:--:-- 26695
 
 # 解决中文乱码
+# 修改模板 odt 文件的字体为 思源宋体
 # 下载 思源宋体 (Source Han Serif)
 https://github.com/adobe-fonts/source-han-serif/releases
 # 简体中文
@@ -254,6 +255,11 @@ public class DocumentService {
 <div class="gallery-wrapper"><div class="gallery"  data-is-empty="false" data-translation="添加图片" data-columns="3">
 <figure class="gallery__item"><a href="https://lhplj.github.io/media/posts/20/gallery/Snipaste_2026-08-20_14-36-17.png" data-size="1206x648"><img loading="lazy" src="https://lhplj.github.io/media/posts/20/gallery/Snipaste_2026-08-20_14-36-17-thumbnail.png" alt="" width="720" height="387"></a>
 <figcaption>生成的pdf</figcaption>
+</figure>
+</div></div>
+<div class="gallery-wrapper"><div class="gallery"  data-is-empty="false" data-translation="添加图片" data-columns="3">
+<figure class="gallery__item"><a href="https://lhplj.github.io/media/posts/20/gallery/Snipaste_2026-08-20_14-47-30.png" data-size="2474x1476"><img loading="lazy" src="https://lhplj.github.io/media/posts/20/gallery/Snipaste_2026-08-20_14-47-30-thumbnail.png" alt="" width="720" height="430"></a>
+<figcaption>模板字体设置</figcaption>
 </figure>
 </div></div>
             ]]>
