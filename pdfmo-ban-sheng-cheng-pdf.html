@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PDF模板生成PDF - lhplj</title><meta name="description" content="2种方式： 1、LibreOffice 可以制作带表单的odt模板文件，再通过 itext7 渲染生成（获取表单字段信息进行数据填充），适合格式固定（表格行数固定），动态的话就不好处理 2、lottemplate 支持类似 freemarker 的脚本来动态生成，适合格式不固定的。但提供的http服务，需要调用接口来生成。 # 使用 lotemplate 通过 docker 启动 https://github.com/Probesys/lotemplate/tree/v2.2.6 # 获取代码 git clone https://github.com/Probesys/lotemplate.git # 修改 .env 中的密码 SECRET_KEY=blulanic # 启动服务：服务启动后，就可以通过 http://localhost:8000 来访问它的 API cd lotemplate docker-compose up -d # 创建目录 curl -X PUT -H 'secretkey: blulanic' -H&hellip;"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://lhplj.github.io/pdfmo-ban-sheng-cheng-pdf.html"><link rel="alternate" type="application/atom+xml" href="https://lhplj.github.io/feed.xml"><link rel="alternate" type="application/json" href="https://lhplj.github.io/feed.json"><meta property="og:title" content="PDF模板生成PDF"><meta property="og:site_name" content="lhplj"><meta property="og:description" content="2种方式： 1、LibreOffice 可以制作带表单的odt模板文件，再通过 itext7 渲染生成（获取表单字段信息进行数据填充），适合格式固定（表格行数固定），动态的话就不好处理 2、lottemplate 支持类似 freemarker 的脚本来动态生成，适合格式不固定的。但提供的http服务，需要调用接口来生成。 # 使用 lotemplate 通过 docker 启动 https://github.com/Probesys/lotemplate/tree/v2.2.6 # 获取代码 git clone https://github.com/Probesys/lotemplate.git # 修改 .env 中的密码 SECRET_KEY=blulanic # 启动服务：服务启动后，就可以通过 http://localhost:8000 来访问它的 API cd lotemplate docker-compose up -d # 创建目录 curl -X PUT -H 'secretkey: blulanic' -H&hellip;"><meta property="og:url" content="https://lhplj.github.io/pdfmo-ban-sheng-cheng-pdf.html"><meta property="og:type" content="article"><link rel="stylesheet" href="https://lhplj.github.io/assets/css/style.css?v=6fbb1e8931a5afe843374fd67c192c86"><link rel="stylesheet" href="https://lhplj.github.io/assets/css/photoswipe.css?v=366561c4c503c68e3af3389ac4d7fb8e"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://lhplj.github.io/pdfmo-ban-sheng-cheng-pdf.html"},"headline":"PDF模板生成PDF","datePublished":"2026-08-20T14:36+08:00","dateModified":"2026-08-20T14:44+08:00","description":"2种方式： 1、LibreOffice 可以制作带表单的odt模板文件，再通过 itext7 渲染生成（获取表单字段信息进行数据填充），适合格式固定（表格行数固定），动态的话就不好处理 2、lottemplate 支持类似 freemarker 的脚本来动态生成，适合格式不固定的。但提供的http服务，需要调用接口来生成。 # 使用 lotemplate 通过 docker 启动 https://github.com/Probesys/lotemplate/tree/v2.2.6 # 获取代码 git clone https://github.com/Probesys/lotemplate.git # 修改 .env 中的密码 SECRET_KEY=blulanic # 启动服务：服务启动后，就可以通过 http://localhost:8000 来访问它的 API cd lotemplate docker-compose up -d # 创建目录 curl -X PUT -H 'secretkey: blulanic' -H&hellip;","author":{"@type":"Person","name":"lhplj","url":"https://lhplj.github.io/authors/lhplj/"},"publisher":{"@type":"Organization","name":"lhplj"}}</script><style>.pswp--svg .pswp__button,
+				          .pswp--svg .pswp__button--arrow--left:before,
+				          .pswp--svg .pswp__button--arrow--right:before {
+					          background-image: url(https://lhplj.github.io/assets/svg/gallery-icons-light.svg);
+			              }</style><noscript><style>img[loading] {
+                    opacity: 1;
+                }</style></noscript></head><body><div class="site-container"><header class="top" id="js-header"><a class="logo" href="https://lhplj.github.io/">lhplj</a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li><a href="https://lhplj.github.io/java.html" target="_self">Case1</a></li><li><a href="https://lhplj.github.io/springnacosjia-zai-pei-zhi-liu-cheng.html" target="_self">Spring+Nacos</a></li><li><a href="https://lhplj.github.io/javayin-yong.html" title="Java引用" target="_self">Java引用</a></li><li><a href="https://lhplj.github.io/java-synchronized-suo-zhong-lei-ji-sheng-ji.html" target="_self">Java Synchronized 锁种类及升级</a></li><li><a href="https://lhplj.github.io/jvm.html" target="_self">JVM</a></li><li><a href="https://lhplj.github.io/vosk.html" title="vosk" target="_self">语音转文本</a></li><li><a href="https://lhplj.github.io/top.html" target="_self">Linux常用命令</a></li></ul></nav></header><main><article class="post"><div class="hero"><header class="hero__content"><div class="wrapper"><div class="post__meta"><time datetime="2026-08-20T14:36">2026-08-20 14:36:43</time></div><h1>PDF模板生成PDF</h1><div class="post__meta post__meta--author"><a href="https://lhplj.github.io/authors/lhplj/" class="feed__author">lhplj</a></div></div></header></div><div class="wrapper post__entry"><p>2种方式：<br>1、LibreOffice 可以制作带表单的odt模板文件，再通过 itext7 渲染生成（获取表单字段信息进行数据填充），适合格式固定（表格行数固定），动态的话就不好处理<br>2、lottemplate 支持类似 freemarker 的脚本来动态生成，适合格式不固定的。但提供的http服务，需要调用接口来生成。</p><pre class="language-bash"><code># 使用 lotemplate 通过 docker 启动
+https://github.com/Probesys/lotemplate/tree/v2.2.6
+
+# 获取代码
+git clone https://github.com/Probesys/lotemplate.git
+
+# 修改 .env 中的密码
+SECRET_KEY=blulanic
+
+# 启动服务：服务启动后，就可以通过 http://localhost:8000 来访问它的 API
+cd lotemplate
+docker-compose up -d
+
+# 创建目录
+curl -X PUT -H 'secretkey: blulanic' -H 'directory: blulanic' http://localhost:8000/
+
+# 制作模板：LibreOffice 制作的odt文件模板(/Users/lihuipeng/Downloads/LOTemplate.odt)，内容如下
+[html]
+&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;First Name&lt;/th&gt;&lt;th&gt;Last Name&lt;/th&gt;&lt;/tr&gt;
+  [for $people]
+  &lt;tr&gt;
+    &lt;td&gt;[foritem firstName]&lt;/td&gt;
+    &lt;td&gt;[foritem lastName]&lt;/td&gt;
+  &lt;/tr&gt;
+  [endfor]
+&lt;/table&gt;
+[endhtml]
+
+# 上传模板
+curl -X PUT -H 'secretkey: blulanic' -F file=@/Users/lihuipeng/Downloads/LOTemplate.odt http://localhost:8000/blulanic
+
+{"file":"LOTemplate_2.odt","message":"Successfully uploaded","variables":{"people":{"type":"array","value":[]}}}
+
+# 使用模板生成pdf
+curl -X POST \
+  -H 'secretkey: blulanic' \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"output.pdf","variables":{"people":{"type":"array","value":[{"firstName":"san","lastName":"zhang"}]}}}' \
+  http://localhost:8000/blulanic/LOTemplate.odt --output test.pdf
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 19354  100 19244  100   110  26364    150 --:--:-- --:--:-- --:--:-- 26695
+
+# 解决中文乱码
+# 下载 思源宋体 (Source Han Serif)
+https://github.com/adobe-fonts/source-han-serif/releases
+# 简体中文
+https://github.com/adobe-fonts/source-han-serif/releases/download/2.003R/09_SourceHanSerifSC.zip
+# 繁体中文
+https://github.com/adobe-fonts/source-han-serif/releases/download/2.003R/10_SourceHanSerifTC.zip
+# 在 lotemplate 中创建目录 fonts
+# 将压缩包中的 otf 文件统一放在 lotemplate/fonts 目录下
+# 修改 docker-compose.yml 挂载 字体（在 volumes 下增加 - ./fonts:/usr/share/fonts/custom:ro   # 挂载字体目录，只读）
+---
+services:
+  lo_api:
+    image: probesys38/lotemplate:v2.2.6
+    # build:
+    #  context: .
+    #  dockerfile: ./Dockerfile
+    #  target: prod
+    volumes:
+      - ./:/app/
+      - ./fonts:/usr/share/fonts/custom:ro   # 挂载字体目录，只读
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=$SECRET_KEY
+      - NB_WORKERS=$NB_WORKERS
+      - MAXTIME=$MAXTIME
+      - DISABLE_HTML_HACK=${DISABLE_HTML_HACK:-}
+      - LOG_LEVEL=${LOG_LEVEL:-}
+    command: "gunicorn -b 0.0.0.0:8000  --access-logfile '-'  --access-logformat '%(h)s %(l)s %(u)s %(t)s  \"%(r)s\" %(s)s %(b)s \"%(f)s\" \"%(a)s\" %(M)s' app:app"
+
+# 重启服务
+docker-compose down
+docker-compose up -d</code></pre><p>java示例</p><pre class="language-java"><code>import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.ResponseExtractor;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.io.Files;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class DocumentService {
+
+    private static final RestTemplate restTemplate = new RestTemplate();
+    private static final String LOTEMPLATE_URL = "http://localhost:8000";
+    private static final String SECRET_KEY = "blulanic"; // 从配置文件读取
+
+    public static void main(String[] args) throws IOException {
+//        String templatePath = "/Users/lihuipeng/Downloads/LOTemplate.odt";
+//        uploadTemplate(templatePath, "blulanic");
+        ObjectMapper mapper = new ObjectMapper();
+
+        // 构建内部 person Map
+        Map&lt;String, String&gt; person = new HashMap&lt;&gt;();
+        person.put("firstName", "訊息發送者");
+        person.put("lastName", "參考編號");
+
+        // 构建 people 列表
+        List&lt;Map&lt;String, String&gt;&gt; peopleList = Collections.singletonList(person);
+
+        // 构建包装对象，包含 type 和 value
+        Map&lt;String, Object&gt; peopleWrapper = new HashMap&lt;&gt;();
+        peopleWrapper.put("type", "array");
+        peopleWrapper.put("value", peopleList);
+
+        // 构建根对象，变量名为 people
+        Map&lt;String, Object&gt; root = new HashMap&lt;&gt;();
+        root.put("people", peopleWrapper);
+
+        // 序列化
+        String json = mapper.writeValueAsString(root);
+        System.out.println(json);
+
+        byte[] bytes = generateDocument("LOTemplate.odt", SECRET_KEY, json);
+        System.out.println(bytes.length);
+        Files.write(bytes, Paths.get("/Users/lihuipeng/Downloads/genByLOTemplate.pdf").toFile());
+    }
+
+    /**
+     * 上传模板文件到 LOTemplate
+     */
+    public static void uploadTemplate(String templatePath, String directory) {
+        String url = LOTEMPLATE_URL + "/" + directory;
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        headers.set("secretkey", SECRET_KEY);
+
+        MultiValueMap&lt;String, Object&gt; body = new LinkedMultiValueMap&lt;&gt;();
+        body.add("file", new FileSystemResource(templatePath));
+
+        HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt; requestEntity = 
+                new HttpEntity&lt;&gt;(body, headers);
+
+        try {
+            ResponseEntity&lt;String&gt; response = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, String.class);
+
+            // 处理响应
+            if (response.getStatusCode().is2xxSuccessful()) {
+                log.info("模板上传成功，状态码: {}, 响应体: {}", response.getStatusCode(), response.getBody());
+                // 可以解析响应体获取更多信息
+            } else {
+                log.error("模板上传失败，状态码: {}, 响应体: {}", response.getStatusCode(), response.getBody());
+                throw new RuntimeException("模板上传失败: " + response.getBody());
+            }
+        } catch (RestClientException e) {
+            log.error("模板上传请求异常", e);
+            throw new RuntimeException("上传模板时发生异常", e);
+        }
+    }
+
+    /**
+     * 使用模板和数据生成文档
+     */
+    public static byte[] generateDocument(String templateName, String directory, String jsonData) {
+        String url = LOTEMPLATE_URL + "/" + directory + "/" + templateName;
+        String requestBody = String.format("{\"name\": \"output.pdf\", \"variables\": %s}", jsonData);
+
+        // 使用 execute 方法，手动处理请求和响应
+        return restTemplate.execute(url, HttpMethod.POST, request -&gt; {
+            request.getHeaders().set("secretkey", SECRET_KEY);
+            request.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+            request.getBody().write(requestBody.getBytes(StandardCharsets.UTF_8));
+        }, new ResponseExtractor&lt;byte[]&gt;() {
+            @Override
+            public byte[] extractData(ClientHttpResponse response) throws IOException {
+                HttpStatus statusCode = response.getStatusCode();
+                if (statusCode.is2xxSuccessful()) {
+                    // 读取输入流到字节数组（JDK 8 兼容方式）
+                    try (InputStream is = response.getBody()) {
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        byte[] buffer = new byte[4096];
+                        int len;
+                        while ((len = is.read(buffer)) != -1) {
+                            baos.write(buffer, 0, len);
+                        }
+                        return baos.toByteArray();
+                    }
+                } else {
+                    // 读取错误信息
+                    try (InputStream is = response.getBody()) {
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        byte[] buffer = new byte[4096];
+                        int len;
+                        while ((len = is.read(buffer)) != -1) {
+                            baos.write(buffer, 0, len);
+                        }
+                        String error = new String(baos.toByteArray(), StandardCharsets.UTF_8);
+                        throw new RuntimeException("生成文档失败，状态码: " + statusCode + ", 错误: " + error);
+                    }
+                }
+            }
+        });
+    }
+}</code></pre><p>效果</p><div class="gallery-wrapper"><div class="gallery" data-is-empty="false" data-translation="添加图片" data-columns="3"><figure class="gallery__item"><a href="https://lhplj.github.io/media/posts/20/gallery/Snipaste_2026-08-20_14-36-17.png" data-size="1206x648"><img loading="lazy" src="https://lhplj.github.io/media/posts/20/gallery/Snipaste_2026-08-20_14-36-17-thumbnail.png" alt="" width="720" height="387"></a><figcaption>生成的pdf</figcaption></figure></div></div></div><footer class="wrapper post__footer"><p class="post__last-updated">This article was updated on 2026-08-20 14:44:54</p><div class="post__share"></div><div class="post__bio bio"><div><h3 class="bio__name"><a href="https://lhplj.github.io/authors/lhplj/" rel="author">lhplj</a></h3></div></div></footer></article><nav class="post__nav"><div class="post__nav-inner"><div class="post__nav-prev"><svg width="1.041em" height="0.416em" aria-hidden="true"><use xlink:href="https://lhplj.github.io/assets/svg/svg-map.svg#arrow-prev"/></svg> <a href="https://lhplj.github.io/zi-ding-yi-suocaszi-xuan-suo.html" class="post__nav-link" rel="prev"><span>Previous</span> 自定义锁（CAS自旋锁）</a></div></div></nav></main><footer class="footer"><div class="footer__copyright"><p>Powered by Publii</p></div><button onclick="backToTopFunction()" id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg><use xlink:href="https://lhplj.github.io/assets/svg/svg-map.svg#toparrow"/></svg></button></footer></div><script defer="defer" src="https://lhplj.github.io/assets/js/scripts.min.js?v=f47c11534595205f20935f0db2a62a85"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].complete) {
+                images[i].classList.add('is-loaded');
+            } else {
+                images[i].addEventListener('load', function () {
+                    this.classList.add('is-loaded');
+                }, false);
+            }
+        }</script><script defer="defer" src="https://lhplj.github.io/assets/js/photoswipe.min.js?v=017385b552f7e0d979e2e2fe6f324015"></script><script defer="defer" src="https://lhplj.github.io/assets/js/photoswipe-ui-default.min.js?v=d067f0883540b1ddda0e2c9ad1b14260"></script><script>var initPhotoSwipeFromDOM=function(gallerySelector){var parseThumbnailElements=function(el){var thumbElements=el.childNodes,numNodes=thumbElements.length,items=[],figureEl,linkEl,size,item;for(var i=0;i<numNodes;i++){figureEl=thumbElements[i];if(figureEl.nodeType!==1){continue;}
+          linkEl=figureEl.children[0];size=linkEl.getAttribute('data-size').split('x');item={src:linkEl.getAttribute('href'),w:parseInt(size[0],10),h:parseInt(size[1],10)};if(figureEl.children.length>1){item.title=figureEl.children[1].innerHTML;}
+          if(linkEl.children.length>0){item.msrc=linkEl.children[0].getAttribute('src');}
+          item.el=figureEl;items.push(item);}
+          return items;};var closest=function closest(el,fn){return el&&(fn(el)?el:closest(el.parentNode,fn));};var onThumbnailsClick=function(e){e=e||window.event;e.preventDefault?e.preventDefault():e.returnValue=false;var eTarget=e.target||e.srcElement;var clickedListItem=closest(eTarget,function(el){return(el.tagName&&el.tagName.toUpperCase()==='FIGURE');});if(!clickedListItem){return;}
+          var clickedGallery=clickedListItem.parentNode,childNodes=clickedListItem.parentNode.childNodes,numChildNodes=childNodes.length,nodeIndex=0,index;for(var i=0;i<numChildNodes;i++){if(childNodes[i].nodeType!==1){continue;}
+          if(childNodes[i]===clickedListItem){index=nodeIndex;break;}
+          nodeIndex++;}
+          if(index>=0){openPhotoSwipe(index,clickedGallery);}
+          return false;};var photoswipeParseHash=function(){var hash=window.location.hash.substring(1),params={};if(hash.length<5){return params;}
+          var vars=hash.split('&');for(var i=0;i<vars.length;i++){if(!vars[i]){continue;}
+          var pair=vars[i].split('=');if(pair.length<2){continue;}
+          params[pair[0]]=pair[1];}
+          if(params.gid){params.gid=parseInt(params.gid,10);}
+          return params;};var openPhotoSwipe=function(index,galleryElement,disableAnimation,fromURL){var pswpElement=document.querySelectorAll('.pswp')[0],gallery,options,items;items=parseThumbnailElements(galleryElement);options={galleryUID:galleryElement.getAttribute('data-pswp-uid'),getThumbBoundsFn:function(index){var thumbnail=items[index].el.getElementsByTagName('img')[0],pageYScroll=window.pageYOffset||document.documentElement.scrollTop,rect=thumbnail.getBoundingClientRect();return{x:rect.left,y:rect.top+pageYScroll,w:rect.width};},
+          mainClass:'pswp--dark',
+          preload: [1,2],
+          hideAnimationDuration:200,
+          showAnimationDuration:0,
+          bgOpacity: 0.7,
+          showHideOpacity:true,
+          closeOnScroll: true,
+          arrowKeys: true,
+          closeEl: true,
+          captionEl: true,
+          fullscreenEl: true,
+          zoomEl: true,
+          shareEl: true,
+          counterEl: true,
+          arrowEl: true,
+          preloaderEl: true
+          };if(fromURL){if(options.galleryPIDs){for(var j=0;j<items.length;j++){if(items[j].pid==index){options.index=j;break;}}}else{options.index=parseInt(index,10)-1;}}else{options.index=parseInt(index,10);}
+          if(isNaN(options.index)){return;}
+          if(disableAnimation){options.showAnimationDuration=0;}
+          gallery=new PhotoSwipe(pswpElement,PhotoSwipeUI_Default,items,options);gallery.init();gallery.options.escKey=true;};var galleryElements=document.querySelectorAll(gallerySelector);for(var i=0,l=galleryElements.length;i<l;i++){galleryElements[i].setAttribute('data-pswp-uid',i+1);galleryElements[i].onclick=onThumbnailsClick;}
+          var hashData=photoswipeParseHash();if(hashData.pid&&hashData.gid){openPhotoSwipe(hashData.pid,galleryElements[hashData.gid-1],true,true);}};window.addEventListener('load', function () {initPhotoSwipeFromDOM('.gallery');}, false);</script><div class="pswp" tabindex="-1" role="dialog" aria-hidden="true"><div class="pswp__bg"></div><div class="pswp__scroll-wrap"><div class="pswp__container"><div class="pswp__item"></div><div class="pswp__item"></div><div class="pswp__item"></div></div><div class="pswp__ui pswp__ui--hidden"><div class="pswp__top-bar"><div class="pswp__counter"></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button><button class="pswp__button pswp__button--share" title="Share"></button><button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button><button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class="pswp__preloader"><div class="pswp__preloader__icn"><div class="pswp__preloader__cut"><div class="pswp__preloader__donut"></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class="pswp__share-tooltip"></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button><button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class="pswp__caption"><div class="pswp__caption__center"></div></div></div></div></div></body></html>

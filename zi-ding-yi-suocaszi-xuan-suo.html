@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>自定义锁（CAS自旋锁） - lhplj</title><meta name="description" content="import java.time.LocalDateTime; import java.time.format.DateTimeFormatter; import java.util.concurrent.TimeUnit; import java.util.concurrent.atomic.AtomicReference; public class SpinLockTest { // 存储持有锁的线程 private AtomicReference&lt;Thread&gt; ar = new AtomicReference&lt;&gt;(); /** * 获取锁:获取锁前，ar 中的值必须是 null，即没有线程持有锁，再把当前线程设置为 ar 的值 */ public void lock() { Thread thread = Thread.currentThread(); while (!ar.compareAndSet(null, thread)) { } System.out.println(time() + thread +&hellip;"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://lhplj.github.io/zi-ding-yi-suocaszi-xuan-suo.html"><link rel="alternate" type="application/atom+xml" href="https://lhplj.github.io/feed.xml"><link rel="alternate" type="application/json" href="https://lhplj.github.io/feed.json"><meta property="og:title" content="自定义锁（CAS自旋锁）"><meta property="og:site_name" content="lhplj"><meta property="og:description" content="import java.time.LocalDateTime; import java.time.format.DateTimeFormatter; import java.util.concurrent.TimeUnit; import java.util.concurrent.atomic.AtomicReference; public class SpinLockTest { // 存储持有锁的线程 private AtomicReference&lt;Thread&gt; ar = new AtomicReference&lt;&gt;(); /** * 获取锁:获取锁前，ar 中的值必须是 null，即没有线程持有锁，再把当前线程设置为 ar 的值 */ public void lock() { Thread thread = Thread.currentThread(); while (!ar.compareAndSet(null, thread)) { } System.out.println(time() + thread +&hellip;"><meta property="og:url" content="https://lhplj.github.io/zi-ding-yi-suocaszi-xuan-suo.html"><meta property="og:type" content="article"><link rel="stylesheet" href="https://lhplj.github.io/assets/css/style.css?v=6fbb1e8931a5afe843374fd67c192c86"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://lhplj.github.io/zi-ding-yi-suocaszi-xuan-suo.html"},"headline":"自定义锁（CAS自旋锁）","datePublished":"2026-08-13T14:57+08:00","dateModified":"2026-08-20T14:45+08:00","description":"import java.time.LocalDateTime; import java.time.format.DateTimeFormatter; import java.util.concurrent.TimeUnit; import java.util.concurrent.atomic.AtomicReference; public class SpinLockTest { // 存储持有锁的线程 private AtomicReference&lt;Thread&gt; ar = new AtomicReference&lt;&gt;(); /** * 获取锁:获取锁前，ar 中的值必须是 null，即没有线程持有锁，再把当前线程设置为 ar 的值 */ public void lock() { Thread thread = Thread.currentThread(); while (!ar.compareAndSet(null, thread)) { } System.out.println(time() + thread +&hellip;","author":{"@type":"Person","name":"lhplj","url":"https://lhplj.github.io/authors/lhplj/"},"publisher":{"@type":"Organization","name":"lhplj"}}</script><noscript><style>img[loading] {
+                    opacity: 1;
+                }</style></noscript></head><body><div class="site-container"><header class="top" id="js-header"><a class="logo" href="https://lhplj.github.io/">lhplj</a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li><a href="https://lhplj.github.io/java.html" target="_self">Case1</a></li><li><a href="https://lhplj.github.io/springnacosjia-zai-pei-zhi-liu-cheng.html" target="_self">Spring+Nacos</a></li><li><a href="https://lhplj.github.io/javayin-yong.html" title="Java引用" target="_self">Java引用</a></li><li><a href="https://lhplj.github.io/java-synchronized-suo-zhong-lei-ji-sheng-ji.html" target="_self">Java Synchronized 锁种类及升级</a></li><li><a href="https://lhplj.github.io/jvm.html" target="_self">JVM</a></li><li><a href="https://lhplj.github.io/vosk.html" title="vosk" target="_self">语音转文本</a></li><li><a href="https://lhplj.github.io/top.html" target="_self">Linux常用命令</a></li></ul></nav></header><main><article class="post"><div class="hero"><header class="hero__content"><div class="wrapper"><div class="post__meta"><time datetime="2026-08-13T14:57">2026-08-13 14:57:08</time></div><h1>自定义锁（CAS自旋锁）</h1><div class="post__meta post__meta--author"><a href="https://lhplj.github.io/authors/lhplj/" class="feed__author">lhplj</a></div></div></header></div><div class="wrapper post__entry"><pre class="language-java"><code>import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+
+public class SpinLockTest {
+
+    // 存储持有锁的线程
+    private AtomicReference&lt;Thread&gt; ar = new AtomicReference&lt;&gt;();
+
+    /**
+     * 获取锁:获取锁前，ar 中的值必须是 null，即没有线程持有锁，再把当前线程设置为 ar 的值
+     */
+    public void lock() {
+        Thread thread = Thread.currentThread();
+        while (!ar.compareAndSet(null, thread)) {
+        }
+        System.out.println(time() + thread + " get lock");
+    }
+
+    /**
+     * 释放锁：释放锁前，ar 中的值必须是当前线程，即是当前线程持有锁，才能释放，更新 ar 的值为 null
+     */
+    public void unlock() {
+        Thread thread = Thread.currentThread();
+        while (!ar.compareAndSet(thread, null)) {
+        }
+        System.out.println(time() + thread + " release lock");
+    }
+
+    private String time() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")) + ": ";
+    }
+
+    public static void main(String[] args) {
+        SpinLockTest sl = new SpinLockTest();
+
+        new Thread(() -&gt; {
+            try {
+                sl.lock();
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                sl.unlock();
+            }
+        }, "t1").start();
+
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        new Thread(() -&gt; {
+            try {
+                sl.lock();
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                sl.unlock();
+            }
+        }, "t2").start();
+    }
+
+}</code></pre><div><span class="styleSwitchParent"><span class="methodReturn">boolean </span><span class="methodQualifier"><a class="header" href="eclipse-javadoc:%E2%98%82=nov-service/%5C/Library%5C/Java%5C/JavaVirtualMachines%5C/jdk-1.8.jdk%5C/Contents%5C/Home%5C/jre%5C/lib%5C/rt.jar=/javadoc_location=/https:%5C/%5C/docs.oracle.com%5C/javase%5C/8%5C/docs%5C/api%5C/=/=/maven.pomderived=/true=/%3Cjava">java</a>.<a class="header" href="eclipse-javadoc:%E2%98%82=nov-service/%5C/Library%5C/Java%5C/JavaVirtualMachines%5C/jdk-1.8.jdk%5C/Contents%5C/Home%5C/jre%5C/lib%5C/rt.jar=/javadoc_location=/https:%5C/%5C/docs.oracle.com%5C/javase%5C/8%5C/docs%5C/api%5C/=/=/maven.pomderived=/true=/%3Cjava.util">util</a>.<a class="header" href="eclipse-javadoc:%E2%98%82=nov-service/%5C/Library%5C/Java%5C/JavaVirtualMachines%5C/jdk-1.8.jdk%5C/Contents%5C/Home%5C/jre%5C/lib%5C/rt.jar=/javadoc_location=/https:%5C/%5C/docs.oracle.com%5C/javase%5C/8%5C/docs%5C/api%5C/=/=/maven.pomderived=/true=/%3Cjava.util.concurrent">concurrent</a>.<a class="header" href="eclipse-javadoc:%E2%98%82=nov-service/%5C/Library%5C/Java%5C/JavaVirtualMachines%5C/jdk-1.8.jdk%5C/Contents%5C/Home%5C/jre%5C/lib%5C/rt.jar=/javadoc_location=/https:%5C/%5C/docs.oracle.com%5C/javase%5C/8%5C/docs%5C/api%5C/=/=/maven.pomderived=/true=/%3Cjava.util.concurrent.atomic">atomic</a>.<a class="header" href="eclipse-javadoc:%E2%98%82=nov-service/%5C/Library%5C/Java%5C/JavaVirtualMachines%5C/jdk-1.8.jdk%5C/Contents%5C/Home%5C/jre%5C/lib%5C/rt.jar=/javadoc_location=/https:%5C/%5C/docs.oracle.com%5C/javase%5C/8%5C/docs%5C/api%5C/=/=/maven.pomderived=/true=/%3Cjava.util.concurrent.atomic(AtomicReference.class%E2%98%83AtomicReference">AtomicReference</a>.</span><span class="methodName">compareAndSet</span><span class="methodParams">(<span class="methodParam"><span class="typeParamsReference typeParamsReferenceNo1"><a class="header" href="eclipse-javadoc:%E2%98%82=nov-service/%5C/Library%5C/Java%5C/JavaVirtualMachines%5C/jdk-1.8.jdk%5C/Contents%5C/Home%5C/jre%5C/lib%5C/rt.jar=/javadoc_location=/https:%5C/%5C/docs.oracle.com%5C/javase%5C/8%5C/docs%5C/api%5C/=/=/maven.pomderived=/true=/%3Cjava.util.concurrent.atomic(AtomicReference.class%E2%98%83AtomicReference~compareAndSet~TV;~TV;%E2%98%82V">V</a></span> <span class="methodParamName methodParamNo1">expect</span>, </span><span class="methodParam"><span class="typeParamsReference typeParamsReferenceNo1"><a class="header" href="eclipse-javadoc:%E2%98%82=nov-service/%5C/Library%5C/Java%5C/JavaVirtualMachines%5C/jdk-1.8.jdk%5C/Contents%5C/Home%5C/jre%5C/lib%5C/rt.jar=/javadoc_location=/https:%5C/%5C/docs.oracle.com%5C/javase%5C/8%5C/docs%5C/api%5C/=/=/maven.pomderived=/true=/%3Cjava.util.concurrent.atomic(AtomicReference.class%E2%98%83AtomicReference~compareAndSet~TV;~TV;%E2%98%82V">V</a></span> <span class="methodParamName methodParamNo2">update</span></span>)</span></span></div><p>Atomically sets the value to the given updated value if the current value <code>==</code>the expected value.</p><dl><dt>Parameters:</dt><dd><strong>expect</strong> the expected value</dd><dd><strong>update</strong> the new value</dd><dt>Returns:</dt><dd><code>true</code>if successful. False return indicates that the actual value was not equal to the expected value.</dd></dl><p>缺点：<br>1、不支持可重入（第一次lock后，unlock前再lock会失败，可再增加AtomicInteger以标记重入锁的次数，需要调整 lock 及 unlock 逻辑）<br>2、会占用CPU让CPU空转，短时间的线程任务没问题<br>3、存在ABA问题（比较的值A中间被改为B又改回A，部分场景没影响；AtomicStampedReference可解决此类问题）<br><br></p></div><footer class="wrapper post__footer"><p class="post__last-updated">This article was updated on 2026-08-20 14:45:04</p><div class="post__share"></div><div class="post__bio bio"><div><h3 class="bio__name"><a href="https://lhplj.github.io/authors/lhplj/" rel="author">lhplj</a></h3></div></div></footer></article><nav class="post__nav"><div class="post__nav-inner"><div class="post__nav-prev"><svg width="1.041em" height="0.416em" aria-hidden="true"><use xlink:href="https://lhplj.github.io/assets/svg/svg-map.svg#arrow-prev"/></svg> <a href="https://lhplj.github.io/vosk.html" class="post__nav-link" rel="prev"><span>Previous</span> Vosk</a></div><div class="post__nav-next"><a href="https://lhplj.github.io/pdfmo-ban-sheng-cheng-pdf.html" class="post__nav-link" rel="next"><span>Next</span> PDF模板生成PDF </a><svg width="1.041em" height="0.416em" aria-hidden="true"><use xlink:href="https://lhplj.github.io/assets/svg/svg-map.svg#arrow-next"/></svg></div></div></nav></main><footer class="footer"><div class="footer__copyright"><p>Powered by Publii</p></div><button onclick="backToTopFunction()" id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg><use xlink:href="https://lhplj.github.io/assets/svg/svg-map.svg#toparrow"/></svg></button></footer></div><script defer="defer" src="https://lhplj.github.io/assets/js/scripts.min.js?v=f47c11534595205f20935f0db2a62a85"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].complete) {
+                images[i].classList.add('is-loaded');
+            } else {
+                images[i].addEventListener('load', function () {
+                    this.classList.add('is-loaded');
+                }, false);
+            }
+        }</script></body></html>
