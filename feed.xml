@@ -3,7 +3,7 @@
     <title>lhplj</title>
     <link href="https://lhplj.github.io/feed.xml" rel="self" />
     <link href="https://lhplj.github.io" />
-    <updated>2026-08-20T15:20:02+08:00</updated>
+    <updated>2026-08-26T08:38:35+08:00</updated>
     <author>
         <name>lhplj</name>
     </author>
@@ -275,6 +275,20 @@ public class DocumentService {
 <figcaption>模板字体设置</figcaption>
 </figure>
 </div></div>
+<pre class="language-bash"><code># create directory
+curl -X PUT -H 'secretkey: blulanic' -H 'directory: blulanic' http://localhost:8000/
+
+# upload a template
+curl -X PUT -H 'secretkey: blulanic' -F file=@/Users/lihuipeng/Downloads/LOTemplate.odt http://localhost:8000/blulanic
+
+# generate a file titi.odt from a template and a json content
+curl -X POST \
+    -H 'secretkey: lopassword' \
+    -H 'Content-Type: application/json' \
+    -d '{"name":"my_file.odt","variables":{"my_tag":{"type":"text","value":"foo"},"other_tag":{"type":"text","value":"bar"}}}' \
+    --output titi.odt http://localhost:8000/test_dir1/basic_test.odt 
+
+curl -H 'secretkey: blulanic' http://localhost:8000/</code></pre>
             ]]>
         </content>
     </entry>
